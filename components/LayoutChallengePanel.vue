@@ -5,7 +5,7 @@
       :name="name"
       :description="description"
       :score="score"
-      :isSolved="isSolved"
+      :is-solved="isSolved"
       :genre="genre"
       :challid="challid"
       @close-challenge-modal="onClose"

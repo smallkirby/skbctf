@@ -52,9 +52,9 @@
               />
               <div class="text-right mr-4">
                 <button
-                  @click="onSubmit"
                   type="button"
                   class="border-2 p-2 rounded-md border-skwhite"
+                  @click="onSubmit"
                 >
                   submit
                 </button>

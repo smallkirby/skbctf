@@ -8,7 +8,7 @@
             :key="index"
             :name="chall.name"
             :description="chall.description"
-            :isSolved="chall.isSolved"
+            :is-solved="chall.isSolved"
             :genre="chall.genre"
             :score="chall.score"
             :challid="chall.dataid"
