@@ -42,22 +42,28 @@
               </svg>
             </button>
           </div>
-          <h1>
+          <h1 class="flex flex-row">
             <NuxtLink
               class="
                 text-pink-200 text-lg
                 font-bold
                 leading-relaxed
                 md:flex-initial
-                inline-block
+                inline
                 py-2
                 px-2
                 md:px-3
+                flex
+                justify-center
                 hover:text-pink-300
               "
               to="/"
             >
-              skbctf
+              <p class="mr-2">skbctf</p>
+              <img
+                src="~/static/img/logo.png"
+                class="float-left w-8 inline animate-pulse"
+              />
             </NuxtLink>
           </h1>
         </div>

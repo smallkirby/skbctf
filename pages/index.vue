@@ -2,7 +2,10 @@
   <layout-wrapper>
     <div class="mr-10">
       <div class="m-6 my-8">
-        <p class="text-pink-200 text-3xl my-2">Welcome to skbctf</p>
+        <div class="flex items-center">
+          <p class="text-pink-200 text-3xl my-2 mr-2">Welcome to skbctf</p>
+          <img src="~/static/img/logo.png" class="w-10 h-10" />
+        </div>
         <div class="mx-4">
           <p><b>skbctf</b> is a CTF platform held all the year.</p>
           <p>This site has several challenges mainly from pwn genre.</p>
