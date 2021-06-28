@@ -10,6 +10,9 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:nuxt/recommended',
   ],
+  parserOptions: {
+    include: ['functions/.eslintrc.js'],
+  },
   plugins: [],
   // add your custom rules here
   rules: {},
