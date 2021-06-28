@@ -1,0 +1,76 @@
+{
+  "name": "skbctf",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "lint": "npm run lint:js",
+    "emu": "cd functions && npm run build && cd ../ && firebase emulators:start",
+    "sectest": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/tests/**/*.test.ts"
+    ]
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/firebase": "^7.6.1",
+    "@nuxtjs/pwa": "^3.3.5",
+    "@types/uuid": "^8.3.0",
+    "cookie-parser": "^1.4.5",
+    "core-js": "^3.9.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "firebase": "^8.6.8",
+    "firebase-admin": "^9.10.0",
+    "nuxt": "^2.15.3",
+    "nuxt-client-init-module": "^0.3.0",
+    "passport": "^0.4.1",
+    "passport-twitter": "^1.0.4",
+    "postcss-for": "^2.1.1",
+    "uuid": "^8.3.2",
+    "vue-authenticate": "^1.5.0",
+    "vuefire": "^2.2.5",
+    "vuex": "^3.6.2",
+    "vuex-persist": "^3.1.3",
+    "vuex-persistedstate": "^4.0.0-beta.3"
+  },
+  "devDependencies": {
+    "@firebase/testing": "^0.20.11",
+    "@nuxt/types": "^2.15.3",
+    "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/eslint-config-typescript": "^6.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/tailwindcss": "^4.0.1",
+    "@types/jest": "^26.0.23",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-nuxt": "^2.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.7.0",
+    "jest": "^27.0.5",
+    "postcss": "^8.2.8",
+    "prettier": "^2.2.1",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.4"
+  }
+}

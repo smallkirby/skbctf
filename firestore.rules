@@ -1,0 +1,34 @@
+rules_version = '2';
+
+service cloud.firestore {
+  
+  match /databases/{database}/documents {
+    match /users/{uid} {
+    		function signedIn() {
+					return request.auth.uid != null
+				}
+  			function isOwnPath(uid) {
+  				return uid == request.auth.uid
+  			}
+        function validCreation(data) {
+        	return data.keys().hasAll(['uid', 'twitter_id', 'registered_at', 'solves', 'role', 'providerId'])
+          && data.keys().hasOnly(['uid', 'twitter_id', 'registered_at', 'solves', 'role', 'providerId'])
+          && data.uid is string && data.twitter_id is string && data.registered_at is timestamp
+          && data.solves is list && data.solves.size() == 0 && data.role == 'viewer'
+          ;
+        }
+        
+      	allow create: if signedIn() && isOwnPath(uid) && validCreation(request.resource.data);
+        allow delete: if false;
+        allow update: if false;
+        allow read: if true;
+    }
+
+    match /flags/{uid} {
+      	allow create: if false;
+        allow delete: if false;
+        allow update: if false;
+        allow read: if false;
+    }
+  }
+}
