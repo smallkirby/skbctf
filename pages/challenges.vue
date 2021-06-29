@@ -24,7 +24,6 @@ import axios from 'axios'
 
 export default {
   async asyncData({ $config }) {
-    console.log($config.microCmsApiKey)
     const { data } = await axios.get(`${$config.microCmsApiUrl}/challenges`, {
       headers: {
         'X-API-KEY': $config.microCmsApiKey,
