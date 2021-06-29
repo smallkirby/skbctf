@@ -1,5 +1,5 @@
 <template>
-  <layout-wrapper v-show="isOpen" class="fixed inset-0 z-50 h-11">
+  <layout-wrapper class="fixed inset-0 z-50 h-11">
     <div
       class="
         notificaion
@@ -54,21 +54,16 @@ export default Vue.extend({
       require: false,
     },
   },
-  data() {
-    return {
-      isOpen: true,
-    }
-  },
   created() {
     if (this.message.length === 0) {
-      this.isOpen = false
+      this.$emit('close-popup')
       return
     }
-    setTimeout(() => (this.isOpen = false), this.duration)
+    setTimeout(() => this.$emit('close-popup'), this.duration)
   },
   methods: {
     onClick() {
-      this.isOpen = false
+      this.$emit('close-popup')
     },
   },
 })

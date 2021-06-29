@@ -1,6 +1,10 @@
 <template>
   <layout-wrapper>
-    <layout-good-popup v-if="isSubmitted" :message="message" />
+    <layout-good-popup
+      v-if="isPopupOpen"
+      :message="message"
+      @close-popup="closePopup"
+    />
     <transition name="modal" appear>
       <div class="modal-overlay flex justify-center" @click.self="onClose">
         <div
@@ -112,7 +116,7 @@ export default Vue.extend({
       isOpen: false,
       submittedFlag: '',
       message: '',
-      isSubmitted: false,
+      isPopupOpen: false,
     }
   },
   computed: {
@@ -123,6 +127,9 @@ export default Vue.extend({
   methods: {
     onClose() {
       this.$emit('close-challenge-modal')
+    },
+    closePopup() {
+      this.isPopupOpen = false
     },
     async onSubmit() {
       console.log(`submitting ${this.submittedFlag}`)
@@ -139,7 +146,7 @@ export default Vue.extend({
       } else {
         this.message = `Wrong answer. Try harder...`
       }
-      this.isSubmitted = true
+      this.isPopupOpen = true
     },
   },
 })
