@@ -33,7 +33,6 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/firebase": "^7.6.1",
-    "@nuxtjs/pwa": "^3.3.5",
     "@types/uuid": "^8.3.0",
     "cookie-parser": "^1.4.5",
     "core-js": "^3.9.1",

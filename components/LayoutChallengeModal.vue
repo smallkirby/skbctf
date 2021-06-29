@@ -1,5 +1,6 @@
 <template>
   <layout-wrapper>
+    <layout-good-popup v-if="isSubmitted" :message="message" />
     <transition name="modal" appear>
       <div class="modal-overlay flex justify-center" @click.self="onClose">
         <div
@@ -71,8 +72,10 @@
 <script>
 import Vue from 'vue'
 import firebase from 'firebase'
+import LayoutGoodPopup from './LayoutGoodPopup.vue'
 
 export default Vue.extend({
+  components: { LayoutGoodPopup },
   name: 'LayoutChallengeModal',
   props: {
     name: {
@@ -108,6 +111,8 @@ export default Vue.extend({
     return {
       isOpen: false,
       submittedFlag: '',
+      message: '',
+      isSubmitted: false,
     }
   },
   computed: {
@@ -127,7 +132,14 @@ export default Vue.extend({
         flag: this.submittedFlag,
         challid: this.challid,
       })
+
       console.log(result)
+      if (result.data.ok === true) {
+        this.message = `You solved ${this.name} !`
+      } else {
+        this.message = `Wrong answer. Try harder...`
+      }
+      this.isSubmitted = true
     },
   },
 })
@@ -140,12 +152,12 @@ export default Vue.extend({
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 90;
+  z-index: 40;
   background: rgba(0, 0, 0, 0.8);
 }
 
 .modal-window {
-  z-index: 100;
+  z-index: 41;
   width: 40em;
   height: 28em;
 }

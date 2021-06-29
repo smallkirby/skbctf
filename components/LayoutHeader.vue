@@ -8,7 +8,7 @@
         black
         px-0
         py-0
-        z-50
+        z-30
         md:pt-2
         border-b-2 border-skblack-light
       "

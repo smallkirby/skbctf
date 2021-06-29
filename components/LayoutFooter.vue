@@ -41,7 +41,7 @@ div#footer-status {
   background-color: #32302f;
   color: #ebdbb2;
   height: 1.3em;
-  z-index: 99;
+  z-index: 40;
   bottom: 0;
 }
 div#left-status {
