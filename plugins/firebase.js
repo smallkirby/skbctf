@@ -11,16 +11,7 @@ const config = {
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(config)
-  firebase
-    .auth()
-    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
-    .then(() => {
-      console.log('changed persistence')
-    })
-    .catch((error) => {
-      console.log('failed to set persistence')
-      console.log(error)
-    })
+  firebase.auth()
 }
 
 export const getUserData = async (uid) => {
