@@ -23,9 +23,15 @@
             flex flex-col
             justify-center
             items-center
+            relative
           "
           :class="[styleset]"
         >
+          <img
+            v-if="isSolved"
+            src="~/static/img/pwned.png"
+            class="absolute w-full h-full"
+          />
           <div class="font-bold text-green-400">{{ name }}</div>
           <div>{{ score }}</div>
           <div>{{ genre }}</div>
