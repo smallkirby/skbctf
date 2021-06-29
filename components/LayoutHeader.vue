@@ -60,10 +60,7 @@
               to="/"
             >
               <p class="mr-2">skbctf</p>
-              <img
-                src="~/static/img/logo.png"
-                class="float-left w-8 inline animate-pulse"
-              />
+              <img src="~/static/img/logo.png" class="float-left w-8 inline" />
             </NuxtLink>
           </h1>
         </div>
