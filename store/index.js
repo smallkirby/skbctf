@@ -22,12 +22,14 @@ export const actions = {
     const screenName = additionalUserInfo.profile.screen_name
     const twitterId = additionalUserInfo.profile.id_str
     const displayName = payload.user.displayName
+    const photourl = payload.user.photoURL
     const uid = payload.user.uid
     const user = {
       twitter_screenName: screenName,
       twitter_displayName: displayName,
       twitter_id: twitterId,
       registered_at: new Date(),
+      photourl,
       uid,
       solves: [],
     }

@@ -1,13 +1,15 @@
 /* eslint-disable camelcase */
 import * as fs from 'fs'
 import * as firebase from '@firebase/testing'
-import { stringify, v4 as uuid } from 'uuid'
+import { v4 as uuid } from 'uuid'
 import * as userdata from 'type/storedata'
 import { database } from 'firebase-admin'
 
 const PROJECT_ID_BASE = 'skbctf-test'
 const EMU_PORT = require('../firebase.json').emulators.firestore.port
 const RULES_PATH = 'firestore.rules'
+
+console.log(`Firestore emulator is running on port ${EMU_PORT}`)
 
 const createAuthApp = (auth?: object): firebase.firestore.Firestore => {
   return firebase
@@ -53,6 +55,7 @@ describe('users test', () => {
       twitter_id: '123456789',
       twitter_screenName: 'i_love_delta',
       twitter_displayName: 'dont_commit',
+      photourl: 'https://localhost',
       registered_at: new Date(),
       solves: [],
     }
@@ -68,6 +71,7 @@ describe('users test', () => {
       twitter_screenName: 'i_love_delta',
       twitter_displayName: 'dont_commit',
       registered_at: new Date(),
+      photourl: 'https://localhost',
       solves: [],
     }
     const db = createAuthApp({ uid: data.uid })
@@ -85,6 +89,7 @@ describe('users test', () => {
       twitter_id: '123456789',
       twitter_screenName: 'i_love_delta',
       twitter_displayName: 'dont_commit',
+      photourl: 'https://localhost',
       registered_at: new Date(),
       solves: [chall],
     }
@@ -99,6 +104,7 @@ describe('users test', () => {
       twitter_id: '123456789',
       twitter_screenName: 'i_love_delta',
       twitter_displayName: 'dont_commit',
+      photourl: 'https://localhost',
       registered_at: new Date(),
       solves: [],
     }

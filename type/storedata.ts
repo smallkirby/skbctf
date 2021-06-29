@@ -8,6 +8,7 @@ export interface Users {
   twitter_screenName: string // without @ mark
   twitter_displayName: string
   twitter_id: string
+  photourl: string
   registered_at: Date
   uid: string
   solves: Solve[]
