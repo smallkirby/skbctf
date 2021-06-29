@@ -1,4 +1,4 @@
-import { signinTwitter, signOut } from '~/plugins/firebase'
+import { signinTwitter, signOut, registerNewUser } from '~/plugins/firebase'
 
 export const strict = false
 
@@ -24,6 +24,7 @@ export const actions = {
     const displayName = payload.user.displayName
     const photourl = payload.user.photoURL
     const uid = payload.user.uid
+    const { isNewUser } = additionalUserInfo
     const user = {
       twitter_screenName: screenName,
       twitter_displayName: displayName,
@@ -32,6 +33,12 @@ export const actions = {
       photourl,
       uid,
       solves: [],
+    }
+    if (isNewUser) {
+      console.log('registering as new user')
+      await registerNewUser(user)
+    } else {
+      console.log('hello again to skbctf...!')
     }
     commit('setUser', user)
   },

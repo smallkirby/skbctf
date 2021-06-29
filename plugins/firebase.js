@@ -25,6 +25,27 @@ if (firebase.apps.length === 0) {
     })
 }
 
+export const registerNewUser = async (user) => {
+  const usersRef = firebase.firestore().collection('users')
+  const userDoc = usersRef.doc(user.uid)
+  await userDoc.get().then((doc) => {
+    if (doc.exists) {
+      console.log(
+        'Somehow, data is already registered while you are new user...' // XXX should notify error and delete account
+      )
+    } else {
+      userDoc
+        .set(user)
+        .then((_) => {
+          console.log('successfully registered!')
+        })
+        .catch((err) => {
+          console.log(err) // XXX should notify error and delete account
+        })
+    }
+  })
+}
+
 export const signinTwitter = async () => {
   const auth = () => {
     return new Promise((resolve, reject) => {
