@@ -11,10 +11,11 @@ service cloud.firestore {
   				return uid == request.auth.uid
   			}
         function validCreation(data) {
-        	return data.keys().hasAll(['uid', 'twitter_id', 'registered_at', 'solves', 'role', 'providerId'])
-          && data.keys().hasOnly(['uid', 'twitter_id', 'registered_at', 'solves', 'role', 'providerId'])
-          && data.uid is string && data.twitter_id is string && data.registered_at is timestamp
-          && data.solves is list && data.solves.size() == 0 && data.role == 'viewer'
+        	return data.keys().hasAll(['twitter_screenName', 'twitter_id', 'twitter_displayName', 'registered_at', 'solves', 'uid'])
+          && data.keys().hasOnly(['twitter_screenName', 'twitter_id', 'twitter_displayName', 'registered_at', 'solves', 'uid'])
+          && data.uid is string && data.twitter_id is string && data.twitter_screenName is string && data.twitter_displayName is string 
+          && data.registered_at is timestamp
+          && data.solves is list && data.solves.size() == 0
           ;
         }
         
@@ -29,6 +30,16 @@ service cloud.firestore {
         allow delete: if false;
         allow update: if false;
         allow read: if false;
+    }
+
+    match /ranks/{uid} {
+  			function isOwnPath(uid) {
+  				return uid == request.auth.uid
+  			}
+        allow create: if false;
+        allow delete: if false;
+        allow update: if false;
+        allow read: if signedIn() && isOwnPath();
     }
   }
 }

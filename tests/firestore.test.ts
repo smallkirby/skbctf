@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
 import * as fs from 'fs'
 import * as firebase from '@firebase/testing'
-import { v4 as uuid } from 'uuid'
-import { UsersData, Chall } from '~/userdata'
+import { stringify, v4 as uuid } from 'uuid'
+import * as userdata from 'type/storedata'
+import { database } from 'firebase-admin'
 
 const PROJECT_ID_BASE = 'skbctf-test'
 const EMU_PORT = require('../firebase.json').emulators.firestore.port
@@ -14,10 +15,11 @@ const createAuthApp = (auth?: object): firebase.firestore.Firestore => {
     .firestore()
 }
 const usersRef = (db: firebase.firestore.Firestore) => db.collection('users')
+const flagsRef = (db: firebase.firestore.Firestore) => db.collection('flags')
 
 jest.setTimeout(30000)
 
-describe('test', () => {
+describe('users test', () => {
   beforeAll(async () => {
     await firebase.loadFirestoreRules({
       projectId: PROJECT_ID_BASE,
@@ -33,40 +35,40 @@ describe('test', () => {
     await Promise.all(firebase.apps().map((app) => app.delete()))
   })
 
-  test('read as unauthorized user', async () => {
+  test('user: read as unauthorized user', async () => {
     const db = createAuthApp()
     const user = usersRef(db).doc('test')
     await firebase.assertSucceeds(user.get())
   })
 
-  test('create invalid data w/o auth', async () => {
+  test('user: create invalid data w/o auth', async () => {
     const db = createAuthApp()
     const user = usersRef(db).doc('test')
     await firebase.assertFails(user.set({ name: 'waiwai' }))
   })
 
-  test('create valid data with auth', async () => {
-    const data: UsersData = {
+  test('user: create valid data with auth', async () => {
+    const data: userdata.Users = {
       uid: 'waiwaiwai',
-      twitter_id: 'ilove_twitter',
+      twitter_id: '123456789',
+      twitter_screenName: 'i_love_delta',
+      twitter_displayName: 'dont_commit',
       registered_at: new Date(),
       solves: [],
-      role: 'viewer',
-      providerId: 'twitter.com',
     }
     const db = createAuthApp({ uid: data.uid })
     const user = usersRef(db).doc(data.uid)
     await firebase.assertSucceeds(user.set(data))
   })
 
-  test('create invalid data with auth: role', async () => {
-    const data: UsersData = {
+  test('user: create invalid data with auth: twitter_id', async () => {
+    const data = {
       uid: 'waiwaiwai',
-      twitter_id: 'ilove_twitter',
+      twitter_id: 123456789, // invalid type
+      twitter_screenName: 'i_love_delta',
+      twitter_displayName: 'dont_commit',
       registered_at: new Date(),
       solves: [],
-      role: 'admin',
-      providerId: 'twitter.com',
     }
     const db = createAuthApp({ uid: data.uid })
     const user = usersRef(db).doc(data.uid)
@@ -74,40 +76,72 @@ describe('test', () => {
   })
 
   test('create invalid data with auth: solves', async () => {
-    const chall: Chall = {
-      name: 'chall-01',
+    const chall: userdata.Solve = {
+      challid: '34',
       solved_at: new Date(),
     }
-    const data: UsersData = {
+    const data: userdata.Users = {
       uid: 'waiwaiwai',
-      twitter_id: 'ilove_twitter',
+      twitter_id: '123456789',
+      twitter_screenName: 'i_love_delta',
+      twitter_displayName: 'dont_commit',
       registered_at: new Date(),
       solves: [chall],
-      role: 'viewer',
-      providerId: 'twitter.com',
     }
     const db = createAuthApp({ uid: data.uid })
     const user = usersRef(db).doc(data.uid)
     await firebase.assertFails(user.set(data))
   })
 
-  test('update contents by viewer', async () => {
-    const data: UsersData = {
+  test('user: update contents by viewer', async () => {
+    const data: userdata.Users = {
       uid: 'waiwaiwai',
-      twitter_id: 'ilove_twitter',
+      twitter_id: '123456789',
+      twitter_screenName: 'i_love_delta',
+      twitter_displayName: 'dont_commit',
       registered_at: new Date(),
       solves: [],
-      role: 'viewer',
-      providerId: 'twitter.com',
     }
     const db = createAuthApp({ uid: data.uid })
     const user = usersRef(db).doc(data.uid)
     await firebase.assertSucceeds(user.set(data))
 
-    const newData: UsersData = {
+    const newData: userdata.Users = {
       ...data,
-      twitter_id: 'uouo-fish-life',
+      twitter_id: '345',
     }
     await firebase.assertFails(user.set(newData))
+  })
+})
+
+describe('flags test', () => {
+  beforeAll(async () => {
+    await firebase.loadFirestoreRules({
+      projectId: PROJECT_ID_BASE,
+      rules: fs.readFileSync(RULES_PATH, 'utf8'),
+    })
+  })
+
+  afterEach(async () => {
+    await firebase.clearFirestoreData({ projectId: PROJECT_ID_BASE })
+  })
+
+  afterAll(async () => {
+    await Promise.all(firebase.apps().map((app) => app.delete()))
+  })
+
+  test('flag: read as authed user', async () => {
+    const db = createAuthApp({uid: 'waiwai'})
+    const user = flagsRef(db).doc('0')
+    await firebase.assertFails(user.get())
+  })
+
+  test('flag: create valid data with auth', async () => {
+    const flag: userdata.Flag = {
+      flag: 'skbctf{test}'
+    }
+    const db = createAuthApp({uid: 'waiwai'})
+    const user = usersRef(db).doc('1')
+    await firebase.assertFails(user.set(flag))
   })
 })

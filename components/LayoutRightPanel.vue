@@ -30,20 +30,17 @@ export default Vue.extend({
   },
   computed: {
     screenName() {
-      return this.$store.getters.screenName
+      if (this.$store.getters.user) {
+        return this.$store.getters.user.twitter_screenName
+      } else {
+        return ''
+      }
     },
     isLoggedin() {
       return this.$store.getters.loggedin
     },
     userinfo() {
       return this.$store.getters.user
-    },
-    username() {
-      if (this.$store.getters.user) {
-        return this.$store.getters.user.displayName
-      } else {
-        return 'not logged in'
-      }
     },
   },
 })

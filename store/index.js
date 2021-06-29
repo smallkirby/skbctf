@@ -7,39 +7,41 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setUser(state, payload) {
-    console.log('store setUser')
-    state.user = payload
+  setUser(state, user) {
+    state.user = user
   },
   unsetUser(state) {
     state.user = null
-  },
-  setScreenName(state, screenName) {
-    state.screenName = screenName
   },
 }
 
 export const actions = {
   async signin({ commit }) {
     const payload = await signinTwitter()
-    console.log(payload)
     const { additionalUserInfo } = payload
     const screenName = additionalUserInfo.profile.screen_name
-    commit('setScreenName', screenName)
+    const twitterId = additionalUserInfo.profile.id_str
+    const displayName = payload.user.displayName
+    const uid = payload.user.uid
+    const user = {
+      twitter_screenName: screenName,
+      twitter_displayName: displayName,
+      twitter_id: twitterId,
+      registered_at: new Date(),
+      uid,
+      solves: [],
+    }
+    commit('setUser', user)
   },
   signout({ commit }) {
-    commit('unsetUser')
     signOut()
+    commit('unsetUser')
   },
 }
 
 export const getters = {
   user(state) {
     return state.user
-  },
-
-  screenName(state) {
-    return state.screenName
   },
 
   loggedin(state) {
