@@ -1,14 +1,23 @@
-import { signinTwitter, signOut, registerNewUser } from '~/plugins/firebase'
+import {
+  signinTwitter,
+  signOut,
+  registerNewUser,
+  getUserData,
+} from '~/plugins/firebase'
 
 export const strict = false
 
 export const state = () => ({
   user: null,
+  solves: [],
 })
 
 export const mutations = {
   setUser(state, user) {
     state.user = user
+  },
+  setSolves(state, solves) {
+    state.solves = solves
   },
   unsetUser(state) {
     state.user = null
@@ -40,6 +49,11 @@ export const actions = {
     } else {
       console.log('hello again to skbctf...!')
     }
+
+    const data = await getUserData(uid)
+    if (data) {
+      commit('setSolves', data.solves)
+    }
     commit('setUser', user)
   },
   signout({ commit }) {
@@ -51,6 +65,10 @@ export const actions = {
 export const getters = {
   user(state) {
     return state.user
+  },
+
+  solves(state) {
+    return state.solves
   },
 
   loggedin(state) {

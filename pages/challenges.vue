@@ -8,7 +8,6 @@
             :key="index"
             :name="chall.name"
             :description="chall.description"
-            :is-solved="chall.isSolved"
             :genre="chall.genre"
             :score="chall.score"
             :challid="chall.dataid"
@@ -30,6 +29,7 @@ export default {
       },
     })
     const challs = data.contents
+    // sort challenges by ID.
     challs.sort((a, b) => {
       if (a.dataid < b.dataid) {
         return -1

@@ -5,7 +5,6 @@
       :name="name"
       :description="description"
       :score="score"
-      :is-solved="isSolved"
       :genre="genre"
       :challid="challid"
       @close-challenge-modal="onClose"
@@ -55,11 +54,6 @@ export default Vue.extend({
       default: -1,
       require: true,
     },
-    isSolved: {
-      type: Boolean,
-      default: false,
-      require: true,
-    },
     genre: {
       type: String,
       default: 'pwn',
@@ -79,7 +73,24 @@ export default Vue.extend({
   },
   computed: {
     styleset() {
-      if (this.isMouseOn) {
+      if (this.isSolved) {
+        if (this.isMouseOn) {
+          return {
+            'bg-skblack-light': true,
+            'border-blue-500': true,
+            'text-lg': true,
+            'border-4': true,
+          }
+        } else {
+          return {
+            'bg-skblack': true,
+            'border-purple-600': true,
+            'animate-pulse': true,
+            'text-base': true,
+            'border-4': true,
+          }
+        }
+      } else if (this.isMouseOn) {
         return {
           'bg-skblack-light': true,
           'border-pink-400': true,
@@ -92,6 +103,14 @@ export default Vue.extend({
           'animate-pulse': true,
           'text-base': true,
         }
+      }
+    },
+    isSolved() {
+      const solves = this.$store.getters.solves
+      if (solves) {
+        return solves.some((solve) => solve.challid === this.challid)
+      } else {
+        return false
       }
     },
   },

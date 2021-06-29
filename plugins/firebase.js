@@ -9,8 +9,6 @@ const config = {
   appId: '1:1045253230032:web:367297afc14ab62dfafdd5',
 }
 
-console.log(`firebase.app.length: ${firebase.app.length}`)
-
 if (firebase.apps.length === 0) {
   firebase.initializeApp(config)
   firebase
@@ -23,6 +21,22 @@ if (firebase.apps.length === 0) {
       console.log('failed to set persistence')
       console.log(error)
     })
+}
+
+export const getUserData = async (uid) => {
+  const usersRef = firebase.firestore().collection('users')
+  const userDoc = usersRef.doc(uid)
+  return await userDoc.get().then((doc) => {
+    if (doc.exists) {
+      const data = doc.data()
+      const user = {
+        solves: data.solves,
+      }
+      return user
+    } else {
+      return null
+    }
+  })
 }
 
 export const registerNewUser = async (user) => {
