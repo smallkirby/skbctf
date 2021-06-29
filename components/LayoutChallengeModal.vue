@@ -142,6 +142,7 @@ export default Vue.extend({
 
       console.log(result)
       if (result.data.ok === true) {
+        await this.$store.dispatch('updateSolves', this.$store.getters.user.uid)
         this.message = `You solved ${this.name} !`
       } else {
         this.message = `Wrong answer. Try harder...`

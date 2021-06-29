@@ -64,6 +64,13 @@ export const actions = {
     commit('unsetUser')
     commit('unsetSolves')
   },
+
+  async updateSolves({ commit }, uid) {
+    const data = await getUserData(uid)
+    if (data) {
+      commit('setSolves', data.solves)
+    }
+  },
 }
 
 export const getters = {
