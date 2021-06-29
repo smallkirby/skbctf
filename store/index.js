@@ -22,6 +22,9 @@ export const mutations = {
   unsetUser(state) {
     state.user = null
   },
+  unsetSolves(state) {
+    state.solves = []
+  },
 }
 
 export const actions = {
@@ -59,6 +62,7 @@ export const actions = {
   signout({ commit }) {
     signOut()
     commit('unsetUser')
+    commit('unsetSolves')
   },
 }
 
