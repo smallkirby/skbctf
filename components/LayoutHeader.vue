@@ -125,24 +125,6 @@
             </li>
             <li class="w-full md:w-auto md:ml-5">
               <NuxtLink
-                to="/about/"
-                class="
-                  text-skwhite
-                  md:block
-                  inline-block
-                  md:py-0
-                  py-5
-                  px-5
-                  md:px-0
-                  w-full
-                  hover:text-skwhite-dark
-                "
-              >
-                About
-              </NuxtLink>
-            </li>
-            <li class="w-full md:w-auto md:ml-5">
-              <NuxtLink
                 to="/credit/"
                 class="
                   text-skwhite
