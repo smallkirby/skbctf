@@ -56,7 +56,7 @@ export default Vue.extend({
     pulseChar: {
       type: String,
       require: false,
-      default: '',
+      default: '🎉',
     },
   },
   created() {

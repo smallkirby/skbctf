@@ -1,8 +1,9 @@
 <template>
   <layout-wrapper>
-    <layout-good-popup
+    <layout-normal-popup
       v-if="isPopupOpen"
       :message="message"
+      :pulseChar="pulseChar"
       @close-popup="closePopup"
     />
     <transition name="modal" appear>
@@ -117,6 +118,7 @@ export default Vue.extend({
       submittedFlag: '',
       message: '',
       isPopupOpen: false,
+      pulseChar: '',
     }
   },
   computed: {
@@ -144,8 +146,10 @@ export default Vue.extend({
       if (result.data.ok === true) {
         await this.$store.dispatch('updateSolves', this.$store.getters.user.uid)
         this.message = `You solved ${this.name} !`
+        this.pulseChar = '🎉'
       } else {
         this.message = `Wrong answer. Try harder...`
+        this.pulseChar = '😢'
       }
       this.isPopupOpen = true
     },
