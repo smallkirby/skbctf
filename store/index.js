@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   signinTwitter,
   signOut,
@@ -10,6 +11,7 @@ export const strict = false
 export const state = () => ({
   user: null,
   solves: [],
+  challs: [],
 })
 
 export const mutations = {
@@ -18,6 +20,9 @@ export const mutations = {
   },
   setSolves(state, solves) {
     state.solves = solves
+  },
+  setChalls(state, challs) {
+    state.challs = challs
   },
   unsetUser(state) {
     state.user = null
