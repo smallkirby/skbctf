@@ -6,7 +6,7 @@ export default (context) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise((resolve, reject) => {
     auth().onAuthStateChanged((user) => {
-      store.commit('setUser', user)
+      // store.commit('setUser', user)
       resolve()
     })
   })
