@@ -45,6 +45,7 @@
               <input
                 v-model="submittedFlag"
                 class="
+                  focus:ring-2 focus:ring-skwhite
                   my-4
                   h-10
                   rounded-md
@@ -56,10 +57,23 @@
                 "
                 placeholder="skbctf{nirugiri_the_life}"
               />
-              <div class="text-right mr-4">
+              <div class="text-right flex justify-end items-center">
+                <div
+                  v-if="waitingJudge"
+                  class="flex justify-end items-center pr-8"
+                >
+                  <p class="animate-spin mr-2">pwn</p>
+                  <p>waiting for a judge...</p>
+                </div>
                 <button
                   type="button"
-                  class="border-2 p-2 rounded-md border-skwhite"
+                  class="
+                    border-2
+                    p-2
+                    rounded-md
+                    border-skwhite
+                    hover:border-skwhite-dark hover:skblack-dark
+                  "
                   @click="onSubmit"
                 >
                   submit
@@ -117,6 +131,7 @@ export default Vue.extend({
       message: '',
       isPopupOpen: false,
       pulseChar: '',
+      waitingJudge: false,
     }
   },
   computed: {
@@ -132,6 +147,7 @@ export default Vue.extend({
       this.isPopupOpen = false
     },
     async onSubmit() {
+      this.waitingJudge = true
       console.log(`submitting ${this.submittedFlag}`)
       const functions = firebase.functions()
       const func = functions.httpsCallable('submit')
@@ -149,6 +165,7 @@ export default Vue.extend({
         this.message = `Wrong answer. Try harder...`
         this.pulseChar = '😢'
       }
+      this.waitingJudge = false
       this.isPopupOpen = true
     },
   },

@@ -1,9 +1,10 @@
 <template>
   <layout-wrapper>
-    <div class="h-72">
-      <p class="text-lg text-pink-200">Your Status</p>
-      <div v-show="isLoggedin" class="overflow-hidden px-4 flex">
-        <img :key="photourl" :src="photourl" class="rounded-full w-12 mr-2" />
+    <div>
+      <div v-show="isLoggedin" class="overflow-hidden px-2 flex mt-2">
+        <a :href="twitterurl"
+          ><img :key="photourl" :src="photourl" class="rounded-full w-12 mr-2"
+        /></a>
         <div>
           <p key="isLoggedin" class="w-full text-sm whitespace-nowrap">
             <a :href="twitterurl">@{{ screenName }}</a>
@@ -17,7 +18,7 @@
       </div>
     </div>
 
-    <div class="h-72 mt-4">
+    <div class="my-8">
       <p class="text-lg text-pink-200">Notifications</p>
       <div class="px-4">nothing</div>
     </div>
