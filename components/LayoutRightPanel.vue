@@ -3,7 +3,7 @@
     <div class="h-72">
       <p class="text-lg text-pink-200">Your Status</p>
       <div v-show="isLoggedin" class="overflow-hidden px-4 flex">
-        <img :src="photourl" class="rounded-full w-12 mr-2" :key="photourl" />
+        <img :key="photourl" :src="photourl" class="rounded-full w-12 mr-2" />
         <div>
           <p key="isLoggedin" class="w-full text-sm whitespace-nowrap">
             <a :href="twitterurl">@{{ screenName }}</a>

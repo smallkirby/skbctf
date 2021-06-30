@@ -3,7 +3,7 @@
     <layout-normal-popup
       v-if="isPopupOpen"
       :message="message"
-      :pulseChar="pulseChar"
+      :pulse-char="pulseChar"
       @close-popup="closePopup"
     />
     <transition name="modal" appear>
@@ -77,10 +77,8 @@
 <script>
 import Vue from 'vue'
 import firebase from 'firebase'
-import LayoutGoodPopup from './LayoutGoodPopup.vue'
 
 export default Vue.extend({
-  components: { LayoutGoodPopup },
   name: 'LayoutChallengeModal',
   props: {
     name: {
