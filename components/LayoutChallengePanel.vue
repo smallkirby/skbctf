@@ -137,10 +137,10 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 @for $i from 1 to 50 {
-  .layout-challenge-panel:nth-child($(i)) .challenge-panel {
-    animation-delay: calc(0.2s * $(i));
+  .layout-challenge-panel:nth-child(#{$i}) .challenge-panel {
+    animation-delay: calc(0.2s * #{$i});
   }
 }
 </style>
