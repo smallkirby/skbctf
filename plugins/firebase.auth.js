@@ -1,4 +1,4 @@
-import { auth } from '~/plugins/firebase.js'
+import { auth } from '~/static/js/firebase.js'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default ({ store }) => {

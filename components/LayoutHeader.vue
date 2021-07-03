@@ -1,5 +1,17 @@
 <template>
   <layout-wrapper>
+    <layout-normal-popup
+      v-show="loginFinished"
+      message="Successfully logged in!"
+      pulse-char="💪"
+      @close-popup="closePopup"
+    />
+    <layout-normal-popup
+      v-show="logoutFinished"
+      message="Hope you come back soon..."
+      pulse-char="😢"
+      @close-popup="closePopup"
+    />
     <header
       class="
         w-full
@@ -163,8 +175,7 @@
               v-show="!loggedin"
               class="w-full md:w-auto md:ml-5 animate-bounce"
             >
-              <NuxtLink
-                to="/login/"
+              <button
                 class="
                   text-skwhite
                   md:block md:py-0
@@ -174,16 +185,16 @@
                   w-full
                   hover:text-skwhite-dark
                 "
+                @click="login"
               >
                 Login<img
                   src="~/static/img/twitter.svg"
                   class="w-4 float-right ml-2 mt-1"
                 />
-              </NuxtLink>
+              </button>
             </li>
             <li v-show="loggedin" class="w-full md:w-auto md:ml-5">
-              <NuxtLink
-                to="/logout/"
+              <button
                 class="
                   text-skwhite
                   md:block
@@ -195,9 +206,10 @@
                   w-full
                   hover:text-skwhite-dark
                 "
+                @click="logout"
               >
                 Logout
-              </NuxtLink>
+              </button>
             </li>
           </ul>
         </nav>
@@ -214,11 +226,29 @@ export default Vue.extend({
   data() {
     return {
       isOpen: false,
+      logoutFinished: false,
+      loginFinished: false,
     }
   },
   computed: {
     loggedin() {
       return this.$store.getters.loggedin
+    },
+  },
+  methods: {
+    async login() {
+      this.loginFinished = false
+      await this.$store.dispatch('signin')
+      this.loginFinished = true
+    },
+    closePopup() {
+      this.loginFinished = false
+      this.logoutFinished = false
+    },
+    async logout() {
+      this.logoutFinished = false
+      await this.$store.dispatch('signout')
+      this.logoutFinished = true
     },
   },
 })

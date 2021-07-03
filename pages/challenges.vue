@@ -22,26 +22,34 @@
 import axios from 'axios'
 
 export default {
-  async asyncData({ $config }) {
-    const { data } = await axios.get(`${$config.microCmsApiUrl}/challenges`, {
-      headers: {
-        'X-API-KEY': $config.microCmsApiKey,
-      },
-    })
-    const challs = data.contents
-    // sort challenges by ID.
-    challs.sort((a, b) => {
-      if (a.dataid < b.dataid) {
-        return -1
-      } else if (a.dataid === b.dataid) {
-        return 0
-      } else {
-        return 1
-      }
-    })
+  data() {
     return {
-      challs,
+      challs: [],
     }
   },
+  mounted() {
+    this.challs = this.$store.getters.challs
+  },
+  //async asyncData({ $config }) {
+  //  const { data } = await axios.get(`${$config.microCmsApiUrl}/challenges`, {
+  //    headers: {
+  //      'X-API-KEY': $config.microCmsApiKey,
+  //    },
+  //  })
+  //  const challs = data.contents
+  //  // sort challenges by ID.
+  //  challs.sort((a, b) => {
+  //    if (a.dataid < b.dataid) {
+  //      return -1
+  //    } else if (a.dataid === b.dataid) {
+  //      return 0
+  //    } else {
+  //      return 1
+  //    }
+  //  })
+  //  return {
+  //    challs,
+  //  }
+  //},
 }
 </script>

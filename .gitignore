@@ -94,6 +94,7 @@ sw.*
 
 # test
 test.js
+pages/test.vue
 
 # log
 *.log

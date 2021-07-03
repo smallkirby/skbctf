@@ -3,7 +3,7 @@ import {
   signOut,
   registerNewUser,
   getUserData,
-} from '~/plugins/firebase'
+} from '~/static/js/firebase'
 
 export const strict = false
 
@@ -75,6 +75,17 @@ export const actions = {
       commit('setSolves', data.solves)
     }
   },
+
+  async nuxtServerInit(context) {
+    if (context.getters.challs.length === 0) {
+      const { data } = await axios.get(`${config.microCmsApiUrl}/challenges`, {
+        headers: {
+          'X-API-KEY': config.microCmsApiKey,
+        },
+      })
+      commit('setChalls', data.contents)
+    }
+  },
 }
 
 export const getters = {
@@ -84,6 +95,18 @@ export const getters = {
 
   solves(state) {
     return state.solves
+  },
+
+  challs(state) {
+    return state.challs.sort((a, b) => {
+      if (a.dataid > b.dataid) {
+        return 1
+      } else if (a.dataid < b.dataid) {
+        return -1
+      } else {
+        return 0
+      }
+    })
   },
 
   loggedin(state) {

@@ -1,14 +1,20 @@
 <template>
   <layout-wrapper>
+    <layout-normal-popup
+      v-show="loginFinished"
+      message="Successfully logged in!"
+      pulse-char="💪"
+      @close-popup="closePopup"
+    />
     <div class="mr-10">
       <div v-if="!isLoggedin" class="m-6 my-8">
         <div>
           <p>Not logged in.</p>
           <p>
             Dive in now with
-            <Nuxt-Link to="/login"
-              ><img src="~/static/img/twitter.svg" class="w-6 inline ml-2"
-            /></Nuxt-Link>
+            <button @click="login">
+              <img src="~/static/img/twitter.svg" class="w-6 inline ml-2" />
+            </button>
           </p>
         </div>
       </div>
@@ -17,11 +23,7 @@
           <p class="text-pink-200 text-3xl my-2">Profile</p>
           <div class="mx-4">
             <div v-show="isLoggedin" class="overflow-hidden px-4 flex">
-              <img
-                :key="photourl"
-                :src="photourl"
-                class="rounded-full w-12 mr-2"
-              />
+              <img :src="photourl" class="rounded-full w-12 mr-2" />
               <div>
                 <p key="isLoggedin" class="w-full text-sm whitespace-nowrap">
                   <a :href="twitterurl">@{{ screenName }}</a>
@@ -51,6 +53,7 @@ export default Vue.extend({
   data() {
     return {
       photourl: '',
+      loginFinished: false,
     }
   },
   computed: {
@@ -90,6 +93,16 @@ export default Vue.extend({
     if (this.$store.getters.user) {
       this.$data.photourl = this.$store.getters.user.photourl
     }
+  },
+  methods: {
+    async login() {
+      this.loginFinished = false
+      await this.$store.dispatch('signin')
+      this.loginFinished = true
+    },
+    closePopup() {
+      this.loginFinished = false
+    },
   },
 })
 </script>
