@@ -48,6 +48,7 @@
     "nuxt-client-init-module": "^0.3.0",
     "passport": "^0.4.1",
     "passport-twitter": "^1.0.4",
+    "pm2": "^5.1.0",
     "postcss-for": "^2.1.1",
     "sass": "^1.35.1",
     "sass-loader": "^10",

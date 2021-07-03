@@ -59,6 +59,10 @@ export default {
 
   serverMiddleware: [],
 
+  server: {
+    port: 49494,
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: {
