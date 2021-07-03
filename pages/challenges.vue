@@ -19,8 +19,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   data() {
     return {
@@ -30,7 +28,7 @@ export default {
   mounted() {
     this.challs = this.$store.getters.challs
   },
-  //async asyncData({ $config }) {
+  // async asyncData({ $config }) {
   //  const { data } = await axios.get(`${$config.microCmsApiUrl}/challenges`, {
   //    headers: {
   //      'X-API-KEY': $config.microCmsApiKey,
@@ -50,6 +48,6 @@ export default {
   //  return {
   //    challs,
   //  }
-  //},
+  // },
 }
 </script>
