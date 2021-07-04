@@ -16,8 +16,42 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Pwn this nirugirish...',
+      },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: 'skbctf',
+      },
+      {
+        hid: 'og:type',
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://skbctf.smallkirby.xyz',
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'skbctf: pwn oriented CTF.',
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: 'Can you pwn me as nirugiri?',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://skbctf.smallkirby.xyz/img/logo.png',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
