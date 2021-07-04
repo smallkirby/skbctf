@@ -1,41 +1,67 @@
-<template>
-  <layout-wrapper>
-    <table class="w-4/5 table-fixed ml-2">
-      <tr class="font-bold text-lg border-b border-skwhite">
-        <th class="w-10">ID</th>
-        <th>name</th>
-        <th>genre</th>
-        <th>score</th>
-        <th>pwned at</th>
-      </tr>
-      <tr v-for="(solve, ix) in solves" :key="ix" class="text-center leading-7">
-        <td>{{ solve.challid }}</td>
-        <td>{{ solve.name }}</td>
-        <td>{{ solve.genre }}</td>
-        <td>{{ solve.score }}</td>
-        <td>{{ solve.solved_at }}</td>
-      </tr>
-    </table>
-  </layout-wrapper>
-</template>
-
 <script>
-import Vue from 'vue'
+import { Line } from 'vue-chartjs'
 
-export default Vue.extend({
+export default {
   name: 'LayoutSolvesTable',
+  extends: Line,
   props: {
-    solves: {
+    propsData: {
       type: Array,
       require: true,
       default: () => [],
     },
   },
   data() {
-    return {}
+    return {
+      data: {
+        datasets: [
+          {
+            label: 'Total Score',
+            fontColor: 'red',
+            borderColor: 'rgb(251, 235, 194)',
+            fill: true,
+            data: this.propsData,
+          },
+        ],
+      },
+
+      options: {
+        legend: {
+          display: false,
+        },
+        elements: {
+          line: {
+            tension: 0,
+          },
+        },
+        scales: {
+          xAxes: [
+            {
+              type: 'time',
+              time: {
+                unit: 'day',
+              },
+              ticks: {
+                fontColor: 'rgb(251, 235, 194)',
+              },
+            },
+          ],
+          yAxes: [
+            {
+              ticks: {
+                fontColor: 'rgb(251, 235, 194)',
+              },
+            },
+          ],
+        },
+        maintainAspectRatio: false,
+      },
+    }
   },
-  computed: {},
-})
+  mounted() {
+    this.renderChart(this.data, this.options)
+  },
+}
 </script>
 
 <style></style>

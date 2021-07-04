@@ -40,9 +40,9 @@
           </div>
         </div>
         <div class="ml-2">
-          <div class="m-6 my-8">
-            <p class="text-white text-2xl my-2">HISTORY</p>
-            <layout-solves-chart :solves="solvesDetail" />
+          <div class="m-6 my-8 w-4/5">
+            <p class="text-white text-2xl my-8">HISTORY</p>
+            <layout-solves-chart v-if="chartReady" :propsData="chartData" />
           </div>
         </div>
       </div>
@@ -53,6 +53,7 @@
 <script>
 import Vue from 'vue'
 import LayoutSolvesTable from '~/components/LayoutSolvesTable.vue'
+import { getChartData } from '~/static/js/solveChart'
 
 export default Vue.extend({
   components: { LayoutSolvesTable },
@@ -60,6 +61,7 @@ export default Vue.extend({
     return {
       loginFinished: false,
       solvesDetail: [],
+      chartData: [],
     }
   },
   computed: {
@@ -69,6 +71,9 @@ export default Vue.extend({
       } else {
         return []
       }
+    },
+    chartReady() {
+      return this.chartData.length !== 0
     },
     isLoggedin() {
       return this.$store.getters.loggedin
@@ -104,7 +109,8 @@ export default Vue.extend({
   },
   mounted() {
     this.solvesDetail = this.$store.getters.solvesDetail
-    console.log(this.solvesDetail)
+    this.chartData = getChartData(this.solvesDetail)
+    console.log(this.chartData)
   },
   methods: {
     async login() {
