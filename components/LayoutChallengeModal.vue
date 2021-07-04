@@ -80,6 +80,20 @@
                 </button>
               </div>
               <div>pwned {{ solvers.length }} times.</div>
+              <div class="overflow-hidden">
+                <div
+                  id="solver-scroller"
+                  class="flex flex-wrap max-h-11 my-4 overflow-y-scroll"
+                >
+                  <div v-for="(solver, ix) in solvers" :key="ix">
+                    <a :href="toTwitterURL(solver.twitter_screenName)"
+                      ><img
+                        :src="solver.photourl"
+                        class="rounded-full w-8 mx-1"
+                    /></a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -142,9 +156,13 @@ export default Vue.extend({
     },
   },
   async mounted() {
-    this.solvers = await getSolversForChall(this.challid)
+    const solvers = await getSolversForChall(this.challid)
+    this.solvers = solvers
   },
   methods: {
+    toTwitterURL(screenName) {
+      return `https://twitter.com/${screenName}`
+    },
     onClose() {
       this.$emit('close-challenge-modal')
     },
@@ -198,5 +216,14 @@ export default Vue.extend({
   z-index: 41;
   width: 40em;
   height: 28em;
+}
+
+#solver-scroller {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#solver-scroller::-webkit-scrollbar {
+  display: none;
 }
 </style>
