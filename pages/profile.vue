@@ -36,9 +36,13 @@
         <div class="ml-2">
           <div class="m-6 my-8">
             <p class="text-white text-2xl my-2">PNWED</p>
-            <div v-for="(solve, ix) in solves" :key="ix" class="mx-4">
-              {{ solve.challid }}
-            </div>
+            <layout-solves-table :solves="solvesDetail" />
+          </div>
+        </div>
+        <div class="ml-2">
+          <div class="m-6 my-8">
+            <p class="text-white text-2xl my-2">HISTORY</p>
+            <layout-solves-chart :solves="solvesDetail" />
           </div>
         </div>
       </div>
@@ -48,11 +52,14 @@
 
 <script>
 import Vue from 'vue'
+import LayoutSolvesTable from '~/components/LayoutSolvesTable.vue'
 
 export default Vue.extend({
+  components: { LayoutSolvesTable },
   data() {
     return {
       loginFinished: false,
+      solvesDetail: [],
     }
   },
   computed: {
@@ -94,6 +101,10 @@ export default Vue.extend({
         return ''
       }
     },
+  },
+  mounted() {
+    this.solvesDetail = this.$store.getters.solvesDetail
+    console.log(this.solvesDetail)
   },
   methods: {
     async login() {

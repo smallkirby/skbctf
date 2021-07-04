@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import moment from 'moment'
 
 const config = {
   apiKey: 'AIzaSyCLSAMnca-aTSkRu425m_Mfr8TltdmNN5A',
@@ -21,7 +22,14 @@ export const getUserData = async (uid) => {
     if (doc.exists) {
       const data = doc.data()
       const user = {
-        solves: data.solves,
+        solves: data.solves.map((solve) => {
+          return {
+            ...solve,
+            solved_at: moment(solve.solved_at.toDate()).format(
+              'YYYY/MM/DD HH:mm:SS'
+            ),
+          }
+        }),
       }
       return user
     } else {

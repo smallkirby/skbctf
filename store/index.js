@@ -112,4 +112,27 @@ export const getters = {
   loggedin(state) {
     return !!state.user
   },
+
+  solvesDetail(state) {
+    if (!state.challs || !state.solves) {
+      return []
+    } else {
+      const challs = state.challs
+      return state.solves.map((solve) => {
+        const chall = challs.find((chall) => solve.challid === chall.dataid)
+        if (!chall) {
+          console.log(`Unknown challenge: ${solve.challid}`)
+          return null
+        }
+        return {
+          challid: solve.challid,
+          solved_at: solve.solved_at,
+          name: chall.name,
+          genre: chall.genre,
+          description: chall.description,
+          score: chall.score,
+        }
+      })
+    }
+  },
 }
