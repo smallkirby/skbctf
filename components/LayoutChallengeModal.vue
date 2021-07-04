@@ -147,6 +147,12 @@ export default Vue.extend({
       this.isPopupOpen = false
     },
     async onSubmit() {
+      if (this.submittedFlag.length === 0) {
+        return
+      }
+      if (this.isSolved) {
+        return
+      }
       this.waitingJudge = true
       console.log(`submitting ${this.submittedFlag}`)
       const functions = firebase.functions()
