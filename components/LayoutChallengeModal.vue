@@ -56,6 +56,7 @@
                   p-2
                 "
                 placeholder="skbctf{nirugiri_the_life}"
+                @keyup.enter="onSubmit"
               />
               <div class="text-right flex justify-end items-center">
                 <div
@@ -174,6 +175,9 @@ export default Vue.extend({
         return
       }
       if (this.isSolved) {
+        this.message = `You've already solved. Try other challs.`
+        this.pulseChar = ''
+        this.isPopupOpen = true
         return
       }
       this.waitingJudge = true
