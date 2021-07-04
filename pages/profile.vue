@@ -1,7 +1,7 @@
 <template>
   <layout-wrapper>
     <layout-normal-popup
-      v-show="loginFinished"
+      v-if="loginFinished"
       message="Successfully logged in!"
       pulse-char="💪"
       @close-popup="closePopup"
@@ -52,7 +52,6 @@ import Vue from 'vue'
 export default Vue.extend({
   data() {
     return {
-      photourl: '',
       loginFinished: false,
     }
   },
@@ -88,11 +87,13 @@ export default Vue.extend({
         return '?'
       }
     },
-  },
-  mounted() {
-    if (this.$store.getters.user) {
-      this.$data.photourl = this.$store.getters.user.photourl
-    }
+    photourl() {
+      if (this.$store.getters.user) {
+        return this.$store.getters.user.photourl
+      } else {
+        return ''
+      }
+    },
   },
   methods: {
     async login() {

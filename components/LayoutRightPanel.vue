@@ -1,7 +1,7 @@
 <template>
   <layout-wrapper>
     <div>
-      <div v-show="isLoggedin" class="overflow-hidden px-2 flex mt-2">
+      <div v-if="isLoggedin" class="overflow-hidden px-2 flex mt-2">
         <a :href="twitterurl"
           ><img :key="photourl" :src="photourl" class="rounded-full w-12 mr-2"
         /></a>
@@ -32,7 +32,7 @@ export default Vue.extend({
   name: 'LayoutRightPanel',
   data() {
     return {
-      photourl: '',
+      //photourl: '',
     }
   },
   computed: {
@@ -63,11 +63,13 @@ export default Vue.extend({
         return '?'
       }
     },
-  },
-  mounted() {
-    if (this.$store.getters.user) {
-      this.$data.photourl = this.$store.getters.user.photourl
-    }
+    photourl() {
+      if (this.$store.getters.user) {
+        return this.$store.getters.user.photourl
+      } else {
+        return ''
+      }
+    },
   },
 })
 </script>
