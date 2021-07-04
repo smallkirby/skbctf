@@ -10,6 +10,7 @@ export interface Rank {
   uid: string
   twitter_id: string
   twitter_screenName: string
+  photourl: string,
   solves: Solve[]
   score: number
 }
@@ -83,6 +84,7 @@ exports.updateRanking = functions.firestore
     return userRef.get().then((userdata) => {
       const twitter_id = userdata.get('twitter_id')
       const twitter_screenName = userdata.get('twitter_screenName')
+      const photourl = userdata.get('photourl')
       const solves: Solve[] = userdata.get('solves')
 
       let total_score = 0
@@ -97,6 +99,7 @@ exports.updateRanking = functions.firestore
         twitter_id,
         twitter_screenName,
         solves,
+        photourl,
         score: total_score,
         uid: userid,
       })
