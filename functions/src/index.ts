@@ -31,6 +31,7 @@ const db = firebase.firestore()
 const usersRef = db.collection('users')
 const flagsRef = db.collection('flags')
 const ranksRef = db.collection('ranks')
+const solvesRef = db.collection('solves')
 
 // no auth
 const updateSolves = async (uid: string, challid: string) => {
@@ -65,6 +66,44 @@ const updateSolves = async (uid: string, challid: string) => {
 export const ping = functions.https.onRequest((request, response) => {
   response.send('pong')
 })
+
+exports.updateAllSolves = functions.firestore
+  .document('users/{userId}')
+  .onWrite(async (change, context) => {
+    const allSolves: {
+      challid: string,
+      solvers: {
+        twitter_screenName: string,
+        photourl: string,
+      }[],
+    }[] = []
+    await usersRef.get().then((userdocs) => {
+      userdocs.forEach((userdoc) => {
+        const user = userdoc.data();
+        const info = {
+          twitter_screenName: user.twitter_screenName as string,
+          photourl: user.photourl as string,
+        };
+        const solves: Solve[] = user.solves;
+        solves.forEach((solve) => {
+          const ix = allSolves.findIndex((s) => s.challid === solve.challid);
+          if (ix === -1) {
+            allSolves.push({
+              challid: solve.challid,
+              solvers: [info],
+            });
+          } else {
+            allSolves[ix].solvers.push(info);
+          }
+        })
+      });
+    });
+
+    allSolves.forEach((s) => {
+      const solveRef = solvesRef.doc(s.challid)
+      solveRef.set(s);
+    });
+  })
 
 exports.updateRanking = functions.firestore
   .document('users/{userId}')
