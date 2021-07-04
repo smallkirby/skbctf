@@ -15,6 +15,19 @@ if (firebase.apps.length === 0) {
   firebase.auth()
 }
 
+export const getSolversForChall = async (challid) => {
+  const solveDoc = firebase.firestore().collection('solves').doc(challid)
+  return await solveDoc.get().then((doc) => {
+    if (doc.exists) {
+      const data = doc.data()
+      const solvers = data.solvers
+      return solvers
+    } else {
+      return []
+    }
+  })
+}
+
 export const getRanks = async () => {
   const ranksRef = firebase.firestore().collection('ranks')
   const ranks = []

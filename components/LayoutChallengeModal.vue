@@ -79,7 +79,7 @@
                   submit
                 </button>
               </div>
-              <div>pwned xx times.</div>
+              <div>pwned {{ solvers.length }} times.</div>
             </div>
           </div>
         </div>
@@ -91,6 +91,7 @@
 <script>
 import Vue from 'vue'
 import firebase from 'firebase'
+import { getSolversForChall } from '~/static/js/firebase'
 
 export default Vue.extend({
   name: 'LayoutChallengeModal',
@@ -132,12 +133,16 @@ export default Vue.extend({
       isPopupOpen: false,
       pulseChar: '',
       waitingJudge: false,
+      solvers: [],
     }
   },
   computed: {
     description_lines() {
       return this.description.split('\n')
     },
+  },
+  async mounted() {
+    this.solvers = await getSolversForChall(this.challid)
   },
   methods: {
     onClose() {
