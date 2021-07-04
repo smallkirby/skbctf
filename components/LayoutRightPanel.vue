@@ -32,7 +32,7 @@ export default Vue.extend({
   name: 'LayoutRightPanel',
   data() {
     return {
-      //photourl: '',
+      // photourl: '',
     }
   },
   computed: {

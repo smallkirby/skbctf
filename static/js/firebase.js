@@ -15,6 +15,20 @@ if (firebase.apps.length === 0) {
   firebase.auth()
 }
 
+export const getRanks = async () => {
+  const ranksRef = firebase.firestore().collection('ranks')
+  const ranks = []
+  await ranksRef
+    .orderBy('score', 'desc')
+    .get()
+    .then((rankdata) => {
+      rankdata.forEach((doc) => {
+        ranks.push(doc.data())
+      })
+    })
+  return ranks
+}
+
 export const getUserData = async (uid) => {
   const usersRef = firebase.firestore().collection('users')
   const userDoc = usersRef.doc(uid)

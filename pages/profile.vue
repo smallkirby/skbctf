@@ -42,7 +42,7 @@
         <div class="ml-2">
           <div class="m-6 my-8 w-4/5">
             <p class="text-white text-2xl my-8">HISTORY</p>
-            <layout-solves-chart v-if="chartReady" :propsData="chartData" />
+            <layout-solves-chart v-if="chartReady" :props-data="chartData" />
           </div>
         </div>
       </div>

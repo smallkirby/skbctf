@@ -22,6 +22,7 @@ export interface Rank {
   uid: string
   twitter_id: string
   twitter_screenName: string
+  photourl: string,
   solves: Solve[]
   score: number
 }

@@ -28,7 +28,6 @@ export const getChartData = (_solves) => {
   }
 
   const zeroDate = moment(scores[0].date)
-  const formatter = 'YY/MM/DD'
   let total = 0
   const data = [
     {

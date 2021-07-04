@@ -10,7 +10,7 @@
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint": "npm run lint:js",
     "lint-fix": "eslint --ext \".js,.vue\" --ignore-path .gitignore . --fix",
-    "emu": "cd functions && npm run build && cd ../ && firebase emulators:start",
+    "emu": "firebase functions:config:get > functions/runtimeconfig.json && cd functions && npm run build && cd ../ && firebase emulators:start",
     "sectest": "jest"
   },
   "jest": {

@@ -101,3 +101,7 @@ pages/test.vue
 
 # gcp
 sw.js
+
+# emulator
+functions/.runtimeconfig.json
+functions/runtimeconfig.json
