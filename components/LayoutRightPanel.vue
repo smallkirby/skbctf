@@ -9,7 +9,7 @@
           <p key="isLoggedin" class="w-full text-sm whitespace-nowrap">
             <a :href="twitterurl">@{{ screenName }}</a>
           </p>
-          <p>{{ score }} pts</p>
+          <p :key="score">{{ score }} pts</p>
         </div>
       </div>
 
@@ -58,7 +58,16 @@ export default Vue.extend({
     },
     score() {
       if (this.$store.getters.solves) {
-        return '0' // XXX
+        return this.$store.getters.solves.reduce((total, solve) => {
+          const chall = this.$store.getters.challs.find(
+            (chall) => chall.dataid === solve.challid
+          )
+          if (chall) {
+            return total + chall.score
+          } else {
+            return total
+          }
+        }, 0)
       } else {
         return '?'
       }
