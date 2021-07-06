@@ -15,7 +15,5 @@ module.exports = {
   },
   plugins: [],
   // add your custom rules here
-  rules: {
-    semi: ['always', 2]
-  },
+  rules: {},
 }

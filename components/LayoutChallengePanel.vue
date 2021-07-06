@@ -7,7 +7,7 @@
       :score="score"
       :genre="genre"
       :challid="challid"
-      :isSolved="isSolved"
+      :is-solved="isSolved"
       @close-challenge-modal="onClose"
     />
     <transition>
