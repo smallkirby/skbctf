@@ -1,6 +1,6 @@
 <template>
   <layout-wrapper>
-    <table class="w-4/5 table-fixed ml-2">
+    <table class="w-full table-fixed ml-2">
       <tr class="font-bold text-lg border-b border-skwhite">
         <th class="w-10">ID</th>
         <th>name</th>
