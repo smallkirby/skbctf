@@ -81,6 +81,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'nuxt-webfontloader',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -89,6 +90,12 @@ export default {
       process.env.NODE_ENV === 'production'
         ? 'https://skbctf.skb.pw'
         : 'http://127.0.0.1:3033',
+  },
+
+  webfontloader: {
+    google: {
+      families: ['Ubuntu Mono'],
+    },
   },
 
   serverMiddleware: [

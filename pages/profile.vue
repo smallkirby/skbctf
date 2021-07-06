@@ -33,17 +33,21 @@
             </div>
           </div>
         </div>
-        <div class="w-full mx-auto px-auto">
+        <div class="w-full px-8">
           <div class="ml-2">
-            <div class="m-6 my-8">
+            <div class="ml-2 my-8">
               <p class="text-white text-2xl my-2">PNWED</p>
               <layout-solves-table :solves="solvesDetail" />
             </div>
           </div>
           <div class="ml-2">
-            <div class="m-6 my-8 w-4/5">
+            <div class="ml-2 my-8">
               <p class="text-white text-2xl my-8">HISTORY</p>
-              <layout-solves-chart v-if="chartReady" :props-data="chartData" />
+              <layout-solves-chart
+                v-if="chartReady"
+                :props-data="chartData"
+                class="pl-2"
+              />
             </div>
           </div>
         </div>

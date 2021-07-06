@@ -52,6 +52,7 @@
     "node-schedule": "^2.0.0",
     "nuxt": "^2.15.3",
     "nuxt-client-init-module": "^0.3.0",
+    "nuxt-webfontloader": "^1.1.0",
     "passport": "^0.4.1",
     "passport-twitter": "^1.0.4",
     "pm2": "^5.1.0",
