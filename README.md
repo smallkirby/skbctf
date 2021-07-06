@@ -2,5 +2,6 @@
 
 You may notice this nirugiri someday.
 
-![log](/img/log/20200628.png)
+![log](/img/log/20210706-1.png)
+![log](/img/log/20210706-2.png)
 

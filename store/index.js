@@ -122,12 +122,11 @@ export const getters = {
   },
 
   notifications(state) {
-    return state.notifications
-    //return state.notifications.sort((a, b) => {
-    //  const ad = new Date(a.revisedAt)
-    //  const bd = new Date(b.revisedAt)
-    //  return -(ad.getTime() - bd.getTime())
-    //})
+    return state.notifications.sort((a, b) => {
+      const ad = new Date(a.revisedAt)
+      const bd = new Date(b.revisedAt)
+      return -(ad.getTime() - bd.getTime())
+    })
   },
 
   loggedin(state) {
