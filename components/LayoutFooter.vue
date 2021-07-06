@@ -23,7 +23,7 @@
       </div>
 
       <div class="w-full md:w-auto">
-        <p>smallkirby no rights received</p>
+        <p>smallkirby few rights received</p>
       </div>
 
       <div class="md:flex hidden justify-items-end">
