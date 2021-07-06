@@ -8,7 +8,7 @@ module.exports = {
         skblack: {
           light: '#42403f',
           DEFAULT: '#282828',
-          dark: '#282828',
+          dark: '#32302f',
         },
         skred: {
           light: '#ff2828',
