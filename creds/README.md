@@ -14,8 +14,7 @@ These information includes:
     - https://firebase.google.com/docs/projects/learn-more?hl=ja
   - In other words, Firestore should be designed to be robust against malcious requests. In this project, access to the DB is controled by security rule, where almost all access is prohibited and only admin can access.
 - Github
-  - One of secrets of Github is Github Secret. It shouldn't be leaked theoretically ofcourse. However, even if it is leaked, the only effect is that someone can force the scoreserver to restart.
-  - The other is read-only deploy key. This is ok to be leaked if this repository is public.
+  - The only secrets of Github is Github Webhook Secret. It shouldn't be leaked theoretically ofcourse. However, even if it is leaked, the only effect is that someone can force the scoreserver to restart.
 
 ## handling
   Even if they are ok to be public, it is preferable to hide these information from this repository. Hence, these information should be packed into `.env` file (It is ok for these information to be packed into distributed files from server. it's the nature of Nuxt).
