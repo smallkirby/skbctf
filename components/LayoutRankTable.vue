@@ -1,8 +1,8 @@
 <template>
   <layout-wrapper>
-    <table class="w-4/5 table-fixed ml-2">
+    <table class="w-full md:w-4/5 table-fixed ml-2">
       <tr class="font-bold text-lg border-b border-skwhite">
-        <th class="w-40">Rank</th>
+        <th class="w-16 md:w-40">Rank</th>
         <th>Name</th>
         <th>Score</th>
       </tr>
@@ -13,7 +13,7 @@
       >
         <td>{{ rank.rank }}</td>
         <td>
-          <div class="pl-8">
+          <div class="md:pl-8">
             <a
               :href="toTwitterURL(rank.twitter_screenName)"
               class="flex justify-left"

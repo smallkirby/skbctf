@@ -1,13 +1,13 @@
 <template>
   <layout-wrapper>
-    <div class="mr-10">
-      <div class="m-6 my-8">
+    <div class="md:mr-10">
+      <div class="mx-5 md:m-6 my-2">
         <p class="text-pink-200 text-3xl my-2">Ranks</p>
         <div class="mx-4">
           <p>Praise their pwning...</p>
         </div>
       </div>
-      <div class="mx-auto w-4/5">
+      <div class="mx-auto md:w-4/5">
         <layout-rank-table :ranks="ranks" />
       </div>
     </div>
