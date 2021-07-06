@@ -195,8 +195,26 @@
                   md:px-0
                   w-full
                   hover:text-skwhite-dark
+                  hidden
                 "
                 @click="login"
+              >
+                Login<img
+                  src="~/static/img/twitter.svg"
+                  class="w-4 float-right ml-2 mt-1"
+                />
+              </button>
+              <button
+                class="
+                  text-skwhite
+                  md:hidden md:py-0
+                  py-5
+                  px-5
+                  md:px-0
+                  w-full
+                  hover:text-skwhite-dark
+                "
+                @click="loginRedirect"
               >
                 Login<img
                   src="~/static/img/twitter.svg"
@@ -250,6 +268,11 @@ export default Vue.extend({
     async login() {
       this.loginFinished = false
       await this.$store.dispatch('signin')
+      this.loginFinished = true
+    },
+    async loginRedirect() {
+      this.loginFinished = false
+      await this.$store.dispatch('signinRedirect')
       this.loginFinished = true
     },
     closePopup() {

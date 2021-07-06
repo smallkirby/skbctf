@@ -3,6 +3,7 @@ import {
   signOut,
   registerNewUser,
   getUserData,
+  signinTwitterRedirect,
 } from '~/static/js/firebase'
 
 export const strict = false
@@ -40,6 +41,38 @@ export const mutations = {
 }
 
 export const actions = {
+  async signinRedirect({ commit }) {
+    const payload = await signinTwitterRedirect()
+    const { additionalUserInfo } = payload
+    const screenName = additionalUserInfo.profile.screen_name
+    const twitterId = additionalUserInfo.profile.id_str
+    const displayName = payload.user.displayName
+    const photourl = payload.user.photoURL
+    const uid = payload.user.uid
+    const { isNewUser } = additionalUserInfo
+    const user = {
+      twitter_screenName: screenName,
+      twitter_displayName: displayName,
+      twitter_id: twitterId,
+      registered_at: new Date(),
+      photourl,
+      uid,
+      solves: [],
+    }
+    if (isNewUser) {
+      console.log('registering as new user')
+      await registerNewUser(user)
+    } else {
+      console.log('hello again to skbctf...!')
+    }
+
+    const data = await getUserData(uid)
+    if (data) {
+      commit('setSolves', data.solves)
+    }
+    commit('setUser', user)
+  },
+
   async signin({ commit }) {
     const payload = await signinTwitter()
     const { additionalUserInfo } = payload
@@ -71,6 +104,7 @@ export const actions = {
     }
     commit('setUser', user)
   },
+
   signout({ commit }) {
     signOut()
     commit('unsetUser')

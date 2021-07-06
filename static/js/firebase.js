@@ -86,6 +86,30 @@ export const registerNewUser = async (user) => {
   })
 }
 
+export const signinTwitterRedirect = async () => {
+  const auth = () => {
+    return new Promise((resolve, reject) => {
+      const authUI = new firebase.auth.TwitterAuthProvider()
+      firebase
+        .auth()
+        .signInWithRedirect(authUI)
+        .then((result) => {
+          resolve(result)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
+  try {
+    const result = await Promise.resolve()
+    return auth(result)
+  } catch (err) {
+    return console.log(err)
+  }
+}
+
 export const signinTwitter = async () => {
   const auth = () => {
     return new Promise((resolve, reject) => {
