@@ -2,7 +2,7 @@
   <layout-wrapper>
     <table class="w-4/5 table-fixed ml-2">
       <tr class="font-bold text-lg border-b border-skwhite">
-        <th class="w-10">Rank</th>
+        <th class="w-40">Rank</th>
         <th>Name</th>
         <th>Score</th>
       </tr>
@@ -13,13 +13,13 @@
       >
         <td>{{ rank.rank }}</td>
         <td>
-          <div>
+          <div class="pl-8">
             <a
               :href="toTwitterURL(rank.twitter_screenName)"
-              class="flex justify-center"
+              class="flex justify-left"
             >
               <img :src="rank.photourl" class="rounded-full w-8 mr-2" />
-              <p>@{{ rank.twitter_screenName }}</p>
+              <p class="text-left">@{{ rank.twitter_screenName }}</p>
             </a>
           </div>
         </td>
