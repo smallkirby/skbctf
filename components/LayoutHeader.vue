@@ -85,7 +85,7 @@
             absolute
             left-0
             md:static
-            bg-skblack-dark
+            bg-skblack
             md:bg-none
             z-20
           "
