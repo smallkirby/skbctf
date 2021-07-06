@@ -15,13 +15,13 @@
     <header
       class="
         w-full
-        absolute
+        fixed
         md:static
-        black
+        bg-skblack
         px-0
         py-0
         z-30
-        md:pt-2
+        pt-2
         border-b-2 border-skblack-light
       "
     >
@@ -42,7 +42,10 @@
         >
           <div class="text-white md:hidden">
             <button class="focus:outline-none" @click="isOpen = !isOpen">
-              <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+              <svg
+                class="h-6 w-6 fill-current text-skwhite"
+                viewBox="0 0 24 24"
+              >
                 <path
                   v-show="!isOpen"
                   d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"
@@ -61,12 +64,12 @@
                 font-bold
                 leading-relaxed
                 md:flex-initial
-                inline
                 py-2
                 px-2
                 md:px-3
                 flex
-                justify-center
+                md:justify-center
+                text-center
                 hover:text-pink-300
               "
               to="/"
@@ -77,11 +80,19 @@
           </h1>
         </div>
         <nav
-          class="w-full md:block absolute left-0 md:static md:bg-none z-20"
+          class="
+            md:w-full md:block
+            absolute
+            left-0
+            md:static
+            bg-skblack-dark
+            md:bg-none
+            z-20
+          "
           :class="isOpen ? 'block' : 'hidden'"
         >
           <ul class="md:flex md:justify-start md:items-end">
-            <li class="w-full md:w-auto md:ml-5">
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/challenges/"
                 class="
@@ -99,7 +110,7 @@
                 Challs
               </NuxtLink>
             </li>
-            <li class="w-full md:w-auto md:ml-5">
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/ranks/"
                 class="
@@ -117,7 +128,7 @@
                 Ranks
               </NuxtLink>
             </li>
-            <li class="w-full md:w-auto md:ml-5">
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/rules/"
                 class="
@@ -135,7 +146,7 @@
                 Rules
               </NuxtLink>
             </li>
-            <li class="w-full md:w-auto md:ml-5">
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/credit/"
                 class="
@@ -153,7 +164,7 @@
                 Credit
               </NuxtLink>
             </li>
-            <li class="w-full md:w-auto md:ml-5">
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/profile/"
                 class="
@@ -184,8 +195,26 @@
                   md:px-0
                   w-full
                   hover:text-skwhite-dark
+                  hidden
                 "
                 @click="login"
+              >
+                Login<img
+                  src="~/static/img/twitter.svg"
+                  class="w-4 float-right ml-2 mt-1"
+                />
+              </button>
+              <button
+                class="
+                  text-skwhite
+                  md:hidden md:py-0
+                  py-5
+                  px-5
+                  md:px-0
+                  w-full
+                  hover:text-skwhite-dark
+                "
+                @click="loginRedirect"
               >
                 Login<img
                   src="~/static/img/twitter.svg"
@@ -239,6 +268,11 @@ export default Vue.extend({
     async login() {
       this.loginFinished = false
       await this.$store.dispatch('signin')
+      this.loginFinished = true
+    },
+    async loginRedirect() {
+      this.loginFinished = false
+      await this.$store.dispatch('signinRedirect')
       this.loginFinished = true
     },
     closePopup() {

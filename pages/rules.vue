@@ -1,7 +1,7 @@
 <template>
   <layout-wrapper>
-    <div class="mr-10">
-      <div class="m-6 my-8">
+    <div class="md:mr-10">
+      <div class="mx-5 md:m-6 my-2">
         <p class="text-pink-200 text-3xl my-2">Rules</p>
         <div class="mx-4">
           <p>
