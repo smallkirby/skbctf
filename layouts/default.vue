@@ -1,13 +1,24 @@
 <template>
   <div>
     <layout-header />
-    <div>
+    <div class="h-full">
       <div class="flex mt-4 items-start">
-        <div class="flex-1 h-full">
+        <div class="flex-1 h-full md:mr-72">
           <Nuxt />
         </div>
         <div
-          class="border-2 mt-4 mr-10 p-3 w-72 border-skwhite-dark rounded-md"
+          class="
+            border-2
+            mt-7
+            mr-10
+            p-3
+            w-72
+            hidden
+            md:block
+            border-skwhite-dark
+            rounded-md
+            md:fixed md:top-12 md:right-0
+          "
         >
           <layout-right-panel />
         </div>

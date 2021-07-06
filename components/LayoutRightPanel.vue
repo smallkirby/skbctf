@@ -20,7 +20,15 @@
 
     <div class="my-8">
       <p class="text-lg text-pink-200">Notifications</p>
-      <div class="px-4">nothing</div>
+      <div v-for="(notification, ix) in notifications" :key="ix">
+        <layout-notification-badge
+          :title="notification.title"
+          :content="notification.content"
+          :revisedAt="new Date(notification.revisedAt)"
+          :publishedAt="new Date(notification.publishedAt)"
+          :isLast="ix == notifications.length - 1"
+        />
+      </div>
     </div>
   </layout-wrapper>
 </template>
@@ -32,7 +40,7 @@ export default Vue.extend({
   name: 'LayoutRightPanel',
   data() {
     return {
-      // photourl: '',
+      notifications: [],
     }
   },
   computed: {
@@ -79,6 +87,9 @@ export default Vue.extend({
         return ''
       }
     },
+  },
+  mounted() {
+    this.notifications = this.$store.getters.notifications
   },
 })
 </script>

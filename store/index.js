@@ -11,6 +11,7 @@ export const state = () => ({
   user: null,
   solves: [],
   challs: [],
+  notifications: [],
 })
 
 export const mutations = {
@@ -26,6 +27,9 @@ export const mutations = {
   },
   setChalls(state, challs) {
     state.challs = challs
+  },
+  setNotifications(state, notifications) {
+    state.notifications = notifications
   },
   unsetUser(state) {
     state.user = null
@@ -115,6 +119,15 @@ export const getters = {
         return 0
       }
     })
+  },
+
+  notifications(state) {
+    return state.notifications
+    //return state.notifications.sort((a, b) => {
+    //  const ad = new Date(a.revisedAt)
+    //  const bd = new Date(b.revisedAt)
+    //  return -(ad.getTime() - bd.getTime())
+    //})
   },
 
   loggedin(state) {
