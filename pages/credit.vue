@@ -40,7 +40,7 @@
           <p class="text-white text-2xl my-2">Contributors</p>
           <div class="mx-4">
             <ul class="list-inside list-disc">
-              <li class="w-auto"></li>
+              <li class="w-auto">nirugiri: a dog in my head</li>
             </ul>
           </div>
         </div>
