@@ -2,7 +2,7 @@
   <div>
     <layout-header />
     <div class="h-full">
-      <div class="flex mt-4 items-start">
+      <div class="flex mt-4 items-start pt-10 md:pt-0">
         <div class="flex-1 h-full md:mr-72">
           <Nuxt />
         </div>
@@ -10,9 +10,7 @@
           class="
             border-2
             mt-7
-            mr-10
-            p-3
-            w-72
+            md:mr-10 md:p-3 md:w-72
             hidden
             md:block
             border-skwhite-dark
@@ -20,7 +18,7 @@
             md:fixed md:top-12 md:right-0
           "
         >
-          <layout-right-panel />
+          <layout-right-panel class="hiden md:block" />
         </div>
       </div>
     </div>

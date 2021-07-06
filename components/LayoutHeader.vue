@@ -15,9 +15,9 @@
     <header
       class="
         w-full
-        absolute
+        fixed
         md:static
-        black
+        bg-skblack
         px-0
         py-0
         z-30
@@ -42,7 +42,10 @@
         >
           <div class="text-white md:hidden">
             <button class="focus:outline-none" @click="isOpen = !isOpen">
-              <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+              <svg
+                class="h-6 w-6 fill-current text-skwhite"
+                viewBox="0 0 24 24"
+              >
                 <path
                   v-show="!isOpen"
                   d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"
@@ -61,12 +64,12 @@
                 font-bold
                 leading-relaxed
                 md:flex-initial
-                inline
                 py-2
                 px-2
                 md:px-3
                 flex
-                justify-center
+                md:justify-center
+                text-center
                 hover:text-pink-300
               "
               to="/"
@@ -77,7 +80,15 @@
           </h1>
         </div>
         <nav
-          class="w-full md:block absolute left-0 md:static md:bg-none z-20"
+          class="
+            md:w-full md:block
+            absolute
+            left-0
+            md:static
+            bg-skblack-dark
+            md:bg-none
+            z-20
+          "
           :class="isOpen ? 'block' : 'hidden'"
         >
           <ul class="md:flex md:justify-start md:items-end">

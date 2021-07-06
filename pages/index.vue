@@ -1,7 +1,7 @@
 <template>
   <layout-wrapper>
-    <div class="mr-10">
-      <div class="m-6 my-2">
+    <div class="md:mr-10">
+      <div class="mx-5 md:m-6 my-2">
         <div class="flex items-center">
           <p class="text-pink-200 text-3xl my-2 mr-2">Welcome to skbctf</p>
           <img src="~/static/img/logo.png" class="w-10 h-10" />
