@@ -14,6 +14,10 @@ export const state = () => ({
 })
 
 export const mutations = {
+  forgetAll(state) {
+    state.user = null
+    state.solves = []
+  },
   setUser(state, user) {
     state.user = user
   },
@@ -74,6 +78,10 @@ export const actions = {
     if (data) {
       commit('setSolves', data.solves)
     }
+  },
+
+  forgetAll({ commit }) {
+    commit('forgetAll')
   },
 
   async nuxtServerInit(context) {

@@ -246,6 +246,7 @@ export default Vue.extend({
       this.logoutFinished = false
     },
     async logout() {
+      this.$store.commit('forgetAll')
       this.logoutFinished = false
       await this.$store.dispatch('signout')
       this.logoutFinished = true
