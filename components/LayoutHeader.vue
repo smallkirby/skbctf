@@ -21,7 +21,7 @@
         px-0
         py-0
         z-30
-        md:pt-2
+        pt-2
         border-b-2 border-skblack-light
       "
     >
@@ -92,7 +92,7 @@
           :class="isOpen ? 'block' : 'hidden'"
         >
           <ul class="md:flex md:justify-start md:items-end">
-            <li class="w-full md:w-auto md:ml-5">
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/challenges/"
                 class="
@@ -110,7 +110,7 @@
                 Challs
               </NuxtLink>
             </li>
-            <li class="w-full md:w-auto md:ml-5">
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/ranks/"
                 class="
@@ -128,7 +128,7 @@
                 Ranks
               </NuxtLink>
             </li>
-            <li class="w-full md:w-auto md:ml-5">
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/rules/"
                 class="
@@ -146,7 +146,7 @@
                 Rules
               </NuxtLink>
             </li>
-            <li class="w-full md:w-auto md:ml-5">
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/credit/"
                 class="
@@ -164,7 +164,7 @@
                 Credit
               </NuxtLink>
             </li>
-            <li class="w-full md:w-auto md:ml-5">
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/profile/"
                 class="
