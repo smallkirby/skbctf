@@ -91,7 +91,12 @@ export default {
         : 'http://127.0.0.1:3033',
   },
 
-  serverMiddleware: [],
+  serverMiddleware: [
+    {
+      path: '/hooks',
+      handle: '~/serverMiddleware/hooks/github.ts',
+    },
+  ],
 
   server: {
     port: 3033,
