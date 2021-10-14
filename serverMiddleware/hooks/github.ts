@@ -60,7 +60,7 @@ const updateDeploy = async () => {
 
   console.log('Restarting pm2...')
   await new Promise<void>((resolve, reject) => {
-    pm2.restart('skbctf', (error) => {
+    pm2.restart('skbctf-tsg', (error) => {
       if (error) {
         reject(error)
       } else {
