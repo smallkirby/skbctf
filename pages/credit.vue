@@ -10,7 +10,7 @@
           <div class="mx-4">
             <ul class="list-inside list-disc">
               <li class="w-auto">
-                <a href="https://twitter.com/smallkirby_">@smallkirby</a>
+                <a href="https://twitter.com/smallkirby">@smallkirby</a>
               </li>
             </ul>
           </div>

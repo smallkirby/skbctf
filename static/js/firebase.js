@@ -2,12 +2,12 @@ import firebase from 'firebase'
 import moment from 'moment'
 
 const config = {
-  apiKey: 'AIzaSyCLSAMnca-aTSkRu425m_Mfr8TltdmNN5A',
-  authDomain: 'skbctf.firebaseapp.com',
-  projectId: 'skbctf',
-  storageBucket: 'skbctf.appspot.com',
-  messagingSenderId: '1045253230032',
-  appId: '1:1045253230032:web:367297afc14ab62dfafdd5',
+  apiKey: "AIzaSyCc6DOUcptcibHdtW8dm89ULCqV6UZtnd4",
+  authDomain: "skbctf-tsg.firebaseapp.com",
+  projectId: "skbctf-tsg",
+  storageBucket: "skbctf-tsg.appspot.com",
+  messagingSenderId: "212735112954",
+  appId: "1:212735112954:web:6711e78a70d533465e3b43"
 }
 
 if (firebase.apps.length === 0) {

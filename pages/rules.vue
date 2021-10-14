@@ -102,7 +102,7 @@
             <div class="mt-2">
               <p>
                 Feel free to contact us:
-                <a href="https://twitter.com/smallkirby_">@smallkirby_</a>
+                <a href="https://twitter.com/smallkirby">@smallkirby</a>
               </p>
             </div>
           </div>
