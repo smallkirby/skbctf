@@ -38,7 +38,7 @@
                   {{ line }}
                 </p>
               </div>
-              <div class="my-4 mx-2">download from HERE.</div>
+              <div v-if="disturl" class="my-4 mx-2">download frrom <a class="font-bold text-skblue-light hover:text-skblue" :href="disturl">HERE</a>.</div>
             </div>
 
             <div class="flex flex-col justify-end">
