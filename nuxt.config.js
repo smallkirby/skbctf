@@ -10,7 +10,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'skbctf',
+    title: 'skbctf-tsg',
     htmlAttrs: {
       lang: 'en',
     },
@@ -25,7 +25,7 @@ export default {
       {
         hid: 'og:site_name',
         property: 'og:site_name',
-        content: 'skbctf',
+        content: 'skbctf-tsg',
       },
       {
         hid: 'og:type',
@@ -35,12 +35,12 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://skbctf.smallkirby.xyz',
+        content: 'https://skbctf-tsg.smallkirby.xyz',
       },
       {
         hid: 'og:title',
         property: 'og:title',
-        content: 'skbctf: pwn oriented CTF.',
+        content: 'skbctf-tsg: pwn oriented CTF for TSGers.',
       },
       {
         hid: 'og:description',
@@ -50,7 +50,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://skbctf.smallkirby.xyz/img/logo.png',
+        content: 'https://skbctf-tsg.smallkirby.xyz/img/logo.png',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -88,8 +88,8 @@ export default {
   axios: {
     baseURL:
       process.env.NODE_ENV === 'production'
-        ? 'https://skbctf.skb.pw'
-        : 'http://127.0.0.1:3033',
+        ? 'https://skbctf-tsg.smallkirby.xyz'
+        : 'http://127.0.0.1:3035',
   },
 
   webfontloader: {
@@ -106,7 +106,7 @@ export default {
   ],
 
   server: {
-    port: 3033,
+    port: 3035,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -41,3 +41,6 @@
 - import
 - ルールをデプロイ
 
+## Server側の設定
+- `.env`をコピー
+- `nuxt.config.js`の`axios`のやつと`port`を変更
