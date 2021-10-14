@@ -109,7 +109,7 @@ exports.updateRanking = functions.firestore
   .document('users/{userId}')
   .onWrite(async (change, context) => {
     const { data } = await axios.get(
-      'https://skbctf.microcms.io/api/v1/challenges',
+      'https://skbctf-tsg.microcms.io/api/v1/challenges',
       {
         headers: {
           'X-API-KEY': microcmsApikey,
