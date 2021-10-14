@@ -13,6 +13,9 @@
             You can pwn these challs and submit flags, to obtain scores and to
             be honored in the scoreboard.
           </p>
+          <p>
+            This version of skbctf is only for TSGer, though anyone can play with. Challenges are frequently updated now.
+          </p>
         </div>
       </div>
       <div class="m-6 my-8">
