@@ -109,7 +109,7 @@ app.post('/github', async (req, res) => {
       res.send('repository ID is invalid.')
       return
     }
-    if (get(preq, ['ref']) !== 'refs/heads/master') {
+    if (get(preq, ['ref']) !== 'refs/heads/tsgtest') {
       res.status(404)
       res.send('invalid refs.')
       return
