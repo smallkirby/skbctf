@@ -8,6 +8,7 @@
       :genre="genre"
       :challid="challid"
       :is-solved="isSolved"
+      :disturl="disturl"
       @close-challenge-modal="onClose"
     />
     <transition>
@@ -70,6 +71,11 @@ export default Vue.extend({
       type: String,
       default: '-1',
       require: true,
+    },
+    disturl: {
+      type: String,
+      default: '',
+      require: false,
     },
   },
   data() {

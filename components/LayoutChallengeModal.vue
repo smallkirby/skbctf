@@ -38,7 +38,7 @@
                   {{ line }}
                 </p>
               </div>
-              <div class="my-4 mx-2">download from HERE.</div>
+              <div v-if="disturl" class="my-4 mx-2">download from <a :href="disturl">HERE</a>.</div>
             </div>
 
             <div class="flex flex-col justify-end">
@@ -138,6 +138,11 @@ export default Vue.extend({
       type: String,
       default: '-1',
       require: true,
+    },
+    disturl: {
+      type: String,
+      default: '',
+      require: false,
     },
   },
   data() {
