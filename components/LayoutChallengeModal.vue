@@ -33,7 +33,7 @@
                 </div>
                 <div class="pr-4">{{ score }} pts</div>
               </div>
-              <div class="my-0 mx-2 overflow-y-auto flex-grow">
+              <div class="my-0 mx-2 overflow-y-auto flex-grow flex-shrink">
                 <p
                   v-for="(line, ix) in description_lines"
                   :key="ix"
@@ -42,8 +42,9 @@
                   {{ line }}
                 </p>
               </div>
-              <div v-if="disturl" class="pt-0 pb-1 my-0 mx-2">
-                download from <a class="font-bold text-skblue-light hover:text-skblue" :href="disturl">HERE</a>.
+              <div class="pt-0 pb-1 my-0 mx-2">
+                <p v-if="disturl" >download from <a class="font-bold text-skblue-light hover:text-skblue" :href="disturl">HERE</a>.</p>
+                <p v-else >(No file is distributed for this chall)</p>
               </div>
             </div>
 
