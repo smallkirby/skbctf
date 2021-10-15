@@ -35,15 +35,12 @@
 
 <script>
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 
 export default Vue.extend({
   name: 'LayoutRightPanel',
-  data() {
-    return {
-      notifications: [],
-    }
-  },
   computed: {
+    ...mapGetters(['notifications']),
     screenName() {
       if (this.$store.getters.user) {
         return this.$store.getters.user.twitter_screenName
@@ -87,9 +84,6 @@ export default Vue.extend({
         return ''
       }
     },
-  },
-  mounted() {
-    this.notifications = this.$store.getters.notifications
   },
 })
 </script>

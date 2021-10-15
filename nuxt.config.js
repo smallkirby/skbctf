@@ -59,13 +59,6 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins/firebase.auth.js',
-    '~/plugins/challfetch.js',
-    { src: '~/store/vuex-persist', ssr: false },
-  ],
-
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -118,7 +111,7 @@ export default {
     },
   },
 
-  publicRuntimeConfig: {
+  privateRuntimeConfig: {
     microCmsApiUrl: MICROCMS_API_URL,
     microCmsApiKey: MICROCMS_API_KEY, // ok to be leaked
   },

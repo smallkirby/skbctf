@@ -20,14 +20,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  data() {
-    return {
-      challs: [],
-    }
-  },
-  mounted() {
-    this.challs = this.$store.getters.challs
+  computed: {
+    ...mapGetters(['challs']),
   },
 }
 </script>
