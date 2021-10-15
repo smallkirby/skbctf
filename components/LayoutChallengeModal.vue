@@ -21,15 +21,19 @@
             p-4
           "
         >
-          <div class="flex flex-col justify-between h-full">
-            <div class="flex flex-col">
-              <div class="text-2xl my-2 flex justify-between">
+          <div class="flex flex-col h-full">
+            <!-- Title, Description, and score  -->
+            <div
+              class="flex flex-col flex-grow justify-between flex-shrink pb-0"
+              style="flex-basis: 0; height: 0"
+            >
+              <div class="text-2xl mt-2 mb-2 flex justify-between">
                 <div class="text-pink-200 font-bold">
                   {{ name }}
                 </div>
                 <div class="pr-4">{{ score }} pts</div>
               </div>
-              <div class="mt-2 mx-2 overflow-y-auto h-1/2">
+              <div class="my-0 mx-2 overflow-y-auto flex-grow">
                 <p
                   v-for="(line, ix) in description_lines"
                   :key="ix"
@@ -38,17 +42,18 @@
                   {{ line }}
                 </p>
               </div>
-              <div v-if="disturl" class="my-4 mx-2">
+              <div v-if="disturl" class="pt-0 pb-1 my-0 mx-2">
                 download from <a class="font-bold text-skblue-light hover:text-skblue" :href="disturl">HERE</a>.
               </div>
             </div>
 
-            <div class="flex flex-col justify-end">
+            <!-- Submission box and pwners -->
+            <div class="flex flex-col justify-end flex-shrink-1 flex-grow-1">
               <input
                 v-model="submittedFlag"
                 class="
                   focus:ring-2 focus:ring-skwhite
-                  my-4
+                  my-2
                   mt-0
                   h-10
                   rounded-md
@@ -73,7 +78,9 @@
                   type="button"
                   class="
                     border-2
-                    p-2
+                    px-2
+                    pt-2
+                    pb-1
                     rounded-md
                     border-skwhite
                     hover:border-skwhite-dark hover:skblack-dark
@@ -87,7 +94,7 @@
               <div class="overflow-hidden">
                 <div
                   id="solver-scroller"
-                  class="flex flex-wrap max-h-11 my-4 overflow-y-scroll"
+                  class="flex flex-wrap max-h-11 my-1 overflow-y-scroll"
                 >
                   <div v-for="(solver, ix) in solvers" :key="ix">
                     <a :href="toTwitterURL(solver.twitter_screenName)"
