@@ -24,6 +24,25 @@
     <layout-footer />
   </div>
 </template>
+
+<script>
+import { auth } from '~/static/js/firebase.js'
+
+export default {
+  mounted() {
+    return new Promise((resolve, reject) => {
+      auth().onAuthStateChanged((user) => {
+        if (user != null) {
+          this.$store.dispatch('updateUserInfo', user.uid)
+          this.$store.dispatch('updateSolves', user.uid)
+          resolve()
+        }
+      })
+    })
+  },
+}
+</script>
+
 <style>
 body {
   background-color: #282828;

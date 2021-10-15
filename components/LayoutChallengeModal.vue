@@ -29,7 +29,7 @@
                 </div>
                 <div class="pr-4">{{ score }} pts</div>
               </div>
-              <div class="mt-2 mx-2">
+              <div class="mt-2 mx-2 overflow-y-auto h-1/2">
                 <p
                   v-for="(line, ix) in description_lines"
                   :key="ix"
@@ -38,7 +38,9 @@
                   {{ line }}
                 </p>
               </div>
-              <div v-if="disturl" class="my-4 mx-2">download from <a class="font-bold text-skblue-light hover:text-skblue" :href="disturl">HERE</a>.</div>
+              <div v-if="disturl" class="my-4 mx-2">
+                download from <a class="font-bold text-skblue-light hover:text-skblue" :href="disturl">HERE</a>.
+              </div>
             </div>
 
             <div class="flex flex-col justify-end">
@@ -47,6 +49,7 @@
                 class="
                   focus:ring-2 focus:ring-skwhite
                   my-4
+                  mt-0
                   h-10
                   rounded-md
                   border-skwhite-light

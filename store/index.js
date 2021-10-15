@@ -4,6 +4,7 @@ import {
   registerNewUser,
   getUserData,
   signinTwitterRedirect,
+  updateUser,
 } from '~/static/js/firebase'
 
 export const strict = false
@@ -64,6 +65,7 @@ export const actions = {
       await registerNewUser(user)
     } else {
       console.log('hello again to skbctf...!')
+      await updateUser(user)
     }
 
     const data = await getUserData(uid)
@@ -96,6 +98,7 @@ export const actions = {
       await registerNewUser(user)
     } else {
       console.log('hello again to skbctf...!')
+      await updateUser(user)
     }
 
     const data = await getUserData(uid)
@@ -111,6 +114,11 @@ export const actions = {
     commit('unsetSolves')
   },
 
+  async updateUserInfo({ commit }, uid) {
+    const user = await getUserData(uid)
+    commit('setUser', user)
+  },
+
   async updateSolves({ commit }, uid) {
     const data = await getUserData(uid)
     if (data) {
@@ -122,14 +130,28 @@ export const actions = {
     commit('forgetAll')
   },
 
-  async nuxtServerInit(context) {
-    if (context.getters.challs.length === 0) {
-      const { data } = await axios.get(`${config.microCmsApiUrl}/challenges`, {
-        headers: {
-          'X-API-KEY': config.microCmsApiKey,
-        },
-      })
-      commit('setChalls', data.contents)
+  async nuxtServerInit(context, { $config, $axios }) {
+    {
+      const { data } = await $axios.get(
+        `${$config.microCmsApiUrl}/challenges`,
+        {
+          headers: {
+            'X-API-KEY': $config.microCmsApiKey,
+          },
+        }
+      )
+      context.commit('setChalls', data.contents)
+    }
+    {
+      const { data } = await $axios.get(
+        `${$config.microCmsApiUrl}/notifications`,
+        {
+          headers: {
+            'X-API-KEY': $config.microCmsApiKey,
+          },
+        }
+      )
+      context.commit('setNotifications', data.contents)
     }
   },
 }
@@ -144,7 +166,7 @@ export const getters = {
   },
 
   challs(state) {
-    return state.challs.sort((a, b) => {
+    return state.challs.slice().sort((a, b) => {
       if (a.dataid > b.dataid) {
         return 1
       } else if (a.dataid < b.dataid) {
@@ -156,7 +178,7 @@ export const getters = {
   },
 
   notifications(state) {
-    return state.notifications.sort((a, b) => {
+    return state.notifications.slice().sort((a, b) => {
       const ad = new Date(a.revisedAt)
       const bd = new Date(b.revisedAt)
       return -(ad.getTime() - bd.getTime())

@@ -49,6 +49,7 @@ export const getUserData = async (uid) => {
     if (doc.exists) {
       const data = doc.data()
       const user = {
+        ...data,
         solves: data.solves.map((solve) => {
           return {
             ...solve,
@@ -61,6 +62,32 @@ export const getUserData = async (uid) => {
       return user
     } else {
       return null
+    }
+  })
+}
+
+export const updateUser = async (user) => {
+  const usersRef = firebase.firestore().collection('users')
+  const userDoc = usersRef.doc(user.uid)
+  await userDoc.get().then((doc) => {
+    if (!doc.exists) {
+      console.log(
+        'Somehow, user doesnt exist in DB.' // XXX should notify error and delete account
+      )
+    } else {
+      const objUpdated = {
+        twitter_id: user.twitter_id,
+        twitter_displayName: user.twitter_displayName,
+        photourl: user.photourl,
+      }
+      userDoc
+        .update(objUpdated)
+        .then((_) => {
+          console.log('successfully updated!')
+        })
+        .catch((err) => {
+          console.log(err) // XXX should notify error and delete account
+        })
     }
   })
 }

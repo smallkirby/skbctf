@@ -7,7 +7,7 @@
       @close-popup="closePopup"
     />
     <div class="mr-10">
-      <div v-if="!isLoggedin" class="m-6 my-8">
+      <div v-if="!loggedin" class="m-6 my-8">
         <div>
           <p>Not logged in.</p>
           <p>
@@ -22,10 +22,10 @@
         <div class="m-6 my-8">
           <p class="text-pink-200 text-3xl my-2">Profile</p>
           <div class="mx-4">
-            <div v-show="isLoggedin" class="overflow-hidden px-4 flex">
+            <div v-show="loggedin" class="overflow-hidden px-4 flex">
               <img :src="photourl" class="rounded-full w-12 mr-2" />
               <div>
-                <p key="isLoggedin" class="w-full text-sm whitespace-nowrap">
+                <p key="loggedin" class="w-full text-sm whitespace-nowrap">
                   <a :href="twitterurl">@{{ screenName }}</a>
                 </p>
                 <p :key="score">{{ score }} pts</p>
@@ -58,6 +58,7 @@
 
 <script>
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 import LayoutSolvesTable from '~/components/LayoutSolvesTable.vue'
 import { getChartData } from '~/static/js/solveChart'
 
@@ -66,42 +67,31 @@ export default Vue.extend({
   data() {
     return {
       loginFinished: false,
-      solvesDetail: [],
-      chartData: [],
     }
   },
   computed: {
-    solves() {
-      if (this.$store.getters.solves) {
-        return this.$store.getters.solves
-      } else {
-        return []
-      }
-    },
+    ...mapGetters(['solves', 'loggedin', 'user', 'challs', 'solvesDetail']),
     chartReady() {
       return this.chartData.length !== 0
     },
-    isLoggedin() {
-      return this.$store.getters.loggedin
-    },
     twitterurl() {
-      if (this.$store.getters.user) {
-        return `https://twitter.com/${this.screenName}`
+      if (this.user) {
+        return `https://twitter.com/${this.user.screenName}`
       } else {
         return ''
       }
     },
     screenName() {
-      if (this.$store.getters.user) {
-        return this.$store.getters.user.twitter_screenName
+      if (this.user) {
+        return this.user.twitter_screenName
       } else {
         return ''
       }
     },
     score() {
-      if (this.$store.getters.solves) {
-        return this.$store.getters.solves.reduce((total, solve) => {
-          const chall = this.$store.getters.challs.find(
+      if (this.solves && this.challs) {
+        return this.solves.reduce((total, solve) => {
+          const chall = this.challs.find(
             (chall) => chall.dataid === solve.challid
           )
           if (chall) {
@@ -115,17 +105,15 @@ export default Vue.extend({
       }
     },
     photourl() {
-      if (this.$store.getters.user) {
-        return this.$store.getters.user.photourl
+      if (this.user) {
+        return this.user.photourl
       } else {
         return ''
       }
     },
-  },
-  mounted() {
-    this.solvesDetail = this.$store.getters.solvesDetail
-    this.chartData = getChartData(this.solvesDetail)
-    console.log(this.chartData)
+    chartData() {
+      return getChartData(this.solvesDetail)
+    },
   },
   methods: {
     async login() {

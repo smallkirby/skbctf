@@ -1,7 +1,7 @@
 rules_version = '2';
 
 service cloud.firestore {
-  
+
   match /databases/{database}/documents {
     match /users/{uid} {
     		function signedIn() {
@@ -18,11 +18,16 @@ service cloud.firestore {
           && data.solves is list && data.solves.size() == 0
           ;
         }
-        
+
+        function validUpdate(data) {
+          return data.keys().hasAll(['twitter_id', 'twitter_displayName', 'photourl']) && data.keys().hasAll(['twitter_id', 'twitter_displayName', 'photourl'])
+          && data.twitter_id is string && data.twitter_displayName is string && data.photourl is string
+        }
+
       	allow create: if signedIn() && isOwnPath(uid) && validCreation(request.resource.data);
         allow delete: if false;
-        allow update: if false;
-        allow read: if true;
+        allow update: if signedIn() && isOwnPath(uid) && validUpdate(request.resource.data);
+        allow read: if signedIn() && isOwnPath(uid);
     }
 
     match /flags/{uid} {
