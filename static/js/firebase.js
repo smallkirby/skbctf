@@ -39,7 +39,45 @@ export const getRanks = async () => {
         ranks.push(doc.data())
       })
     })
+
+  // if more than 2 users have same score, a user who reached that score recently get higher rank.
   return ranks
+    .sort((a, b) => {
+      if (a.score > b.score) {
+        return 1
+      } else if (a.score < b.score) {
+        return -1
+      }
+
+      // score is same, so compare last solve date.
+      const date_a = moment(
+        a.solves
+          .reduce((_solve_a, _solve_b) => {
+            const solve_a = moment(_solve_a.solved_at.toDate())
+            const solve_b = moment(_solve_b.solved_at.toDate())
+            return solve_a.isAfter(_solve_b) ? _solve_a : _solve_b
+          })
+          .solved_at.toDate()
+      )
+      const date_b = moment(
+        b.solves
+          .reduce((_solve_a, _solve_b) => {
+            const solve_a = moment(_solve_a.solved_at.toDate())
+            const solve_b = moment(_solve_b.solved_at.toDate())
+            return solve_a.isAfter(_solve_b) ? _solve_a : _solve_b
+          })
+          .solved_at.toDate()
+      )
+
+      if (date_a.isAfter(date_b)) {
+        return 1
+      } else if (date_a.isBefore(date_b)) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+    .reverse()
 }
 
 export const getUserData = async (uid) => {
