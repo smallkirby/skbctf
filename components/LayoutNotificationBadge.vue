@@ -6,7 +6,7 @@ G
       :title="title"
       :content="content"
       :publishedAt="publishedAt"
-      :revisedAt="revisedAt"
+      :updatedAt="updatedAt"
       @close-notification-modal="onClose"
     />
     <button class="text-left" @click="onOpen">
@@ -51,7 +51,7 @@ export default Vue.extend({
       require: true,
       default: () => new Date('1990/01/01'),
     },
-    revisedAt: {
+    updatedAt: {
       type: Date,
       require: true,
       default: () => new Date('1990/01/01'),
@@ -72,8 +72,8 @@ export default Vue.extend({
     publishedAtStr() {
       return moment(this.publishedAt).format('YYYY/MM/DD HH:mm')
     },
-    revisedAtStr() {
-      return moment(this.revisedAt).format('YYYY/MM/DD HH:mm')
+    updatedAtStr() {
+      return moment(this.updatedAt).format('YYYY/MM/DD HH:mm')
     },
   },
   methods: {

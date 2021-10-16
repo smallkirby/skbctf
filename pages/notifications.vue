@@ -22,10 +22,10 @@
             </div>
             <div class="flex flex-col">
               <div class="text-sm text-skwhite-dark text-right">
-                <p>revised at: {{ notification.revisedAt }}</p>
+                <p>updated at: {{ notification.updatedAt }}</p>
               </div>
               <div class="text-sm text-skwhite-dark text-right">
-                <p>published at: {{ notification.revisedAt }}</p>
+                <p>published at: {{ notification.publishedAt }}</p>
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@ export default Vue.extend({
       return this.notifications.slice().map((notif) => {
         return {
           ...notif,
-          revisedAt: moment(notif.revisedAt).format('YYYY/MM/DD HH:mm'),
+          updatedAt: moment(notif.updatedAt).format('YYYY/MM/DD HH:mm'),
           publishedAt: moment(notif.publishedAt).format('YYYY/MM/DD HH:mm'),
         }
       })

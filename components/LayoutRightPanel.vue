@@ -31,7 +31,7 @@
         <layout-notification-badge
           :title="notification.title"
           :content="notification.content"
-          :revised-at="new Date(notification.revisedAt)"
+          :updated-at="new Date(notification.updatedAt)"
           :published-at="new Date(notification.publishedAt)"
           :is-last="ix == notifications.length - 1"
         />

@@ -179,8 +179,8 @@ export const getters = {
 
   notifications(state) {
     return state.notifications.slice().sort((a, b) => {
-      const ad = new Date(a.revisedAt)
-      const bd = new Date(b.revisedAt)
+      const ad = new Date(a.publishedAt)
+      const bd = new Date(b.publishedAt)
       return -(ad.getTime() - bd.getTime())
     })
   },

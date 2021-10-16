@@ -72,7 +72,7 @@ export default Vue.extend({
       require: true,
       default: () => new Date('1990/01/01'),
     },
-    revisedAt: {
+    updatedAt: {
       type: Date,
       require: true,
       default: () => new Date('1990/01/01'),
@@ -95,8 +95,8 @@ export default Vue.extend({
     publishedAtStr() {
       return moment(this.publishedAt).format('YYYY/MM/DD HH:mm')
     },
-    revisedAtStr() {
-      return moment(this.revisedAt).format('YYYY/MM/DD HH:mm')
+    rupdatedAtStr() {
+      return moment(this.updatedAt).format('YYYY/MM/DD HH:mm')
     },
   },
   methods: {
