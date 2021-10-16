@@ -26,7 +26,7 @@
               <img :src="photourl" class="rounded-full w-12 mr-2" />
               <div>
                 <p key="loggedin" class="w-full text-sm whitespace-nowrap">
-                  <a :href="twitterurl">@{{ screenName }}</a>
+                  <a :href="twitterurl" target="_blank">@{{ screenName }}</a>
                 </p>
                 <p :key="score">{{ score }} pts</p>
               </div>

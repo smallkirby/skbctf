@@ -17,6 +17,7 @@
             <a
               :href="toTwitterURL(rank.twitter_screenName)"
               class="flex justify-left"
+              target="_blank"
             >
               <img :src="rank.photourl" class="rounded-full w-8 mr-2" />
               <p class="text-left">@{{ rank.twitter_screenName }}</p>
