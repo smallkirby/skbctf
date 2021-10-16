@@ -3,7 +3,9 @@
     <div class="md:mr-10">
       <div class="mx-5 md:m-6 my-2">
         <div class="flex items-center">
-          <p class="text-pink-200 text-3xl my-2 mr-2">Welcome to skbctf for TSGer</p>
+          <p class="text-pink-200 text-3xl my-2 mr-2">
+            Welcome to skbctf for TSGer
+          </p>
           <img src="~/static/img/logo.png" class="w-10 h-10" />
         </div>
         <div class="mx-4">
