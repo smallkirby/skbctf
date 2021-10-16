@@ -2,12 +2,12 @@
   <layout-wrapper>
     <div>
       <div v-if="isLoggedin" class="overflow-hidden px-2 flex mt-2">
-        <a :href="twitterurl"
+        <NuxtLink to="/profile"
           ><img :key="photourl" :src="photourl" class="rounded-full w-12 mr-2"
-        /></a>
+        /></NuxtLink>
         <div>
           <p key="isLoggedin" class="w-full text-sm whitespace-nowrap">
-            <a :href="twitterurl">@{{ screenName }}</a>
+            <NuxtLink to="/profile">@{{ screenName }}</NuxtLink>
           </p>
           <p :key="score">{{ score }} pts</p>
         </div>

@@ -105,7 +105,9 @@
                   class="flex flex-wrap max-h-11 my-1 overflow-y-scroll"
                 >
                   <div v-for="(solver, ix) in solvers" :key="ix">
-                    <a :href="toTwitterURL(solver.twitter_screenName)"
+                    <a
+                      :href="toTwitterURL(solver.twitter_screenName)"
+                      target="_blank"
                       ><img
                         :src="solver.photourl"
                         class="rounded-full w-8 mx-1"
