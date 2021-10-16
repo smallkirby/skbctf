@@ -1,8 +1,8 @@
 <template>
   <div>
     <layout-header />
-    <div class="h-full">
-      <div class="flex md:mt-4 items-start pt-10 md:pt-0">
+    <div class="h-full md:pt-9">
+      <div class="flex items-start pt-10 md:pt-0">
         <div class="flex-1 h-full mt-4 md:mt-0 md:mr-72">
           <Nuxt />
         </div>
