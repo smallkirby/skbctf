@@ -26,8 +26,9 @@
       "
     >
       <div
-        class="md:max-w-2xl ml-5 pr-8 md:flex md:items-center md:justify-start"
+        class="ml-5 pr-8 md:flex md:items-center md:justify-start"
       >
+        <!-- Logo -->
         <div
           class="
             md:flex md:flex-initial
@@ -57,6 +58,7 @@
               </svg>
             </button>
           </div>
+
           <h1 class="flex flex-row">
             <NuxtLink
               class="
@@ -79,6 +81,8 @@
             </NuxtLink>
           </h1>
         </div>
+
+        <!-- Menus -->
         <nav
           class="
             md:w-full md:block
@@ -92,6 +96,7 @@
           :class="isOpen ? 'block' : 'hidden'"
         >
           <ul class="md:flex md:justify-start md:items-end">
+            <!-- Challenges -->
             <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/challenges/"
@@ -110,6 +115,8 @@
                 Challs
               </NuxtLink>
             </li>
+
+            <!-- Ranking -->
             <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/ranks/"
@@ -128,6 +135,8 @@
                 Ranks
               </NuxtLink>
             </li>
+
+            <!-- Rules -->
             <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/rules/"
@@ -146,6 +155,8 @@
                 Rules
               </NuxtLink>
             </li>
+
+            <!-- Credit -->
             <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/credit/"
@@ -164,6 +175,8 @@
                 Credit
               </NuxtLink>
             </li>
+
+            <!-- Profile -->
             <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
               <NuxtLink
                 to="/profile/"
@@ -182,6 +195,11 @@
                 Profile
               </NuxtLink>
             </li>
+
+            <!-- (Spacer) -->
+            <li class="flex-grow"></li>
+
+            <!-- Login / Logout -->
             <li
               v-show="!loggedin"
               class="w-full md:w-auto md:ml-5 animate-bounce"
@@ -242,6 +260,7 @@
             </li>
           </ul>
         </nav>
+        </div>
       </div>
     </header>
   </layout-wrapper>
