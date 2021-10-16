@@ -16,7 +16,6 @@
       class="
         w-full
         fixed
-        md:static
         bg-skblack
         px-0
         py-0
