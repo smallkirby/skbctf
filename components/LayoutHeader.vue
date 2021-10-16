@@ -278,7 +278,6 @@
             </li>
           </ul>
         </nav>
-        </div>
       </div>
     </header>
   </layout-wrapper>
