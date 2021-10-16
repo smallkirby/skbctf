@@ -44,7 +44,7 @@
           </p>
           <p>We would be grateful to you by showing your credit.</p>
           <p>
-            Check <a href="/rules" class="underline">'Rules'</a> for more
+            Check <NuxtLink to="/rules" class="underline">'Rules'</NuxtLink> for more
             detail.
           </p>
         </div>

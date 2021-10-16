@@ -20,15 +20,25 @@
 
     <div class="my-8">
       <p class="text-lg text-pink-200">Notifications</p>
-      <div v-for="(notification, ix) in notifications" :key="ix">
+      <NuxtLink
+        v-if="notificationsTooMany"
+        to="/notifications"
+        class="font-bold text-skblue-light hover:text-skblue text-sm"
+      >
+        (show all notifications)
+      </NuxtLink>
+      <div v-for="(notification, ix) in notificationsToShow" :key="ix">
         <layout-notification-badge
           :title="notification.title"
           :content="notification.content"
-          :revisedAt="new Date(notification.revisedAt)"
-          :publishedAt="new Date(notification.publishedAt)"
-          :isLast="ix == notifications.length - 1"
+          :revised-at="new Date(notification.revisedAt)"
+          :published-at="new Date(notification.publishedAt)"
+          :is-last="ix == notifications.length - 1"
         />
       </div>
+      <NuxtLink v-if="notificationsNotShownSize != 0" to="/notifications">
+        and {{ notificationsNotShownSize }} more notifications...
+      </NuxtLink>
     </div>
   </layout-wrapper>
 </template>
@@ -39,8 +49,28 @@ import { mapGetters } from 'vuex'
 
 export default Vue.extend({
   name: 'LayoutRightPanel',
+
+  data() {
+    return {
+      MAX_NOTIFICATION: 5,
+    }
+  },
+
   computed: {
     ...mapGetters(['notifications']),
+    notificationsToShow() {
+      return this.notifications.slice(0, 5)
+    },
+    notificationsTooMany() {
+      return this.notifications.length > 5
+    },
+    notificationsNotShownSize() {
+      if (this.notifications.length <= 5) {
+        return 0
+      } else {
+        return this.notifications.length - 5
+      }
+    },
     screenName() {
       if (this.$store.getters.user) {
         return this.$store.getters.user.twitter_screenName
