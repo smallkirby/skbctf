@@ -43,8 +43,15 @@
                 </p>
               </div>
               <div class="pt-0 pb-1 my-0 mx-2">
-                <p v-if="disturl" >download from <a class="font-bold text-skblue-light hover:text-skblue" :href="disturl">HERE</a>.</p>
-                <p v-else >(No file is distributed for this chall)</p>
+                <p v-if="disturl">
+                  download from
+                  <a
+                    class="font-bold text-skblue-light hover:text-skblue"
+                    :href="disturl"
+                    >HERE</a
+                  >.
+                </p>
+                <p v-else>(No file is distributed for this chall)</p>
               </div>
             </div>
 
@@ -200,14 +207,19 @@ export default Vue.extend({
         challid: this.challid,
       })
 
-      console.log(result)
       if (result.data.ok === true) {
         await this.$store.dispatch('updateSolves', this.$store.getters.user.uid)
         this.message = `You solved ${this.name} !`
         this.pulseChar = '🎉'
-      } else {
+      } else if (result.data.message === 'Unauthorized') {
+        this.message = `You have to login first to submit a flag...`
+        this.pulseChar = '😢'
+      } else if (result.data.message === 'wrong') {
         this.message = `Wrong answer. Try harder...`
         this.pulseChar = '😢'
+      } else {
+        this.message = `Unknown Error. Please contact server maintainers.`
+        this.pulseChar = '🔥'
       }
       this.waitingJudge = false
       this.isPopupOpen = true
