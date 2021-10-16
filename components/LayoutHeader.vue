@@ -195,6 +195,25 @@
               </NuxtLink>
             </li>
 
+            <li class="w-full md:w-auto md:ml-5" @click="isOpen = !isOpen">
+              <NuxtLink
+                to="/notifications/"
+                class="
+                  text-skwhite
+                  md:block
+                  inline-block
+                  md:py-0
+                  py-5
+                  px-5
+                  md:px-0
+                  w-full
+                  hover:text-skwhite-dark
+                "
+              >
+                Notifications
+              </NuxtLink>
+            </li>
+
             <!-- (Spacer) -->
             <li class="flex-grow"></li>
 
