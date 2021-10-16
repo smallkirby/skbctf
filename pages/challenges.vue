@@ -11,6 +11,7 @@
             :genre="chall.genre"
             :score="chall.score"
             :challid="chall.dataid"
+            :disturl="chall.disturl"
           />
         </div>
       </div>

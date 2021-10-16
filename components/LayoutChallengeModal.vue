@@ -159,6 +159,11 @@ export default Vue.extend({
       default: '-1',
       require: true,
     },
+    disturl: {
+      type: String,
+      default: '',
+      require: true,
+    },
   },
   data() {
     return {

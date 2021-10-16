@@ -207,6 +207,7 @@ export const getters = {
           genre: chall.genre,
           description: chall.description,
           score: chall.score,
+          disturl: chall.disturl,
         }
       })
     }
