@@ -14,7 +14,8 @@
             be honored in the scoreboard.
           </p>
           <p>
-            This version of skbctf is only for TSGer, though anyone can play with. Challenges are frequently updated now.
+            This version of skbctf is only for TSGer, though anyone can play
+            with. Challenges are frequently updated now.
           </p>
         </div>
       </div>
@@ -44,8 +45,8 @@
           </p>
           <p>We would be grateful to you by showing your credit.</p>
           <p>
-            Check <NuxtLink to="/rules" class="underline">'Rules'</NuxtLink> for more
-            detail.
+            Check <NuxtLink to="/rules" class="underline">'Rules'</NuxtLink> for
+            more detail.
           </p>
         </div>
       </div>

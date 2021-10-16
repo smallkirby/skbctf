@@ -5,8 +5,8 @@ G
       v-show="isOpen"
       :title="title"
       :content="content"
-      :publishedAt="publishedAt"
-      :updatedAt="updatedAt"
+      :published-at="publishedAt"
+      :updated-at="updatedAt"
       @close-notification-modal="onClose"
     />
     <button class="text-left" @click="onOpen">

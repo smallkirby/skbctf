@@ -30,7 +30,7 @@ import { auth } from '~/static/js/firebase.js'
 
 export default {
   mounted() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       auth().onAuthStateChanged((user) => {
         if (user != null) {
           this.$store.dispatch('updateUserInfo', user.uid)

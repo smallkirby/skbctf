@@ -24,9 +24,7 @@
         border-b-2 border-skblack-light
       "
     >
-      <div
-        class="ml-5 pr-8 md:flex md:items-center md:justify-start"
-      >
+      <div class="ml-5 pr-8 md:flex md:items-center md:justify-start">
         <!-- Logo -->
         <div
           class="
@@ -278,7 +276,6 @@
             </li>
           </ul>
         </nav>
-        </div>
       </div>
     </header>
   </layout-wrapper>

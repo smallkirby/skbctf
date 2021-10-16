@@ -50,28 +50,28 @@ export const getRanks = async () => {
       }
 
       // score is same, so compare last solve date.
-      const date_a = moment(
+      const dataA = moment(
         a.solves
-          .reduce((_solve_a, _solve_b) => {
-            const solve_a = moment(_solve_a.solved_at.toDate())
-            const solve_b = moment(_solve_b.solved_at.toDate())
-            return solve_a.isAfter(_solve_b) ? _solve_a : _solve_b
+          .reduce((_solveA, _solveB) => {
+            const solveA = moment(_solveA.solved_at.toDate())
+            const solveB = moment(_solveB.solved_at.toDate())
+            return solveA.isAfter(solveB) ? _solveA : _solveB
           })
           .solved_at.toDate()
       )
-      const date_b = moment(
+      const dateB = moment(
         b.solves
-          .reduce((_solve_a, _solve_b) => {
-            const solve_a = moment(_solve_a.solved_at.toDate())
-            const solve_b = moment(_solve_b.solved_at.toDate())
-            return solve_a.isAfter(_solve_b) ? _solve_a : _solve_b
+          .reduce((_solveA, _solveB) => {
+            const solveA = moment(_solveA.solved_at.toDate())
+            const solveB = moment(_solveB.solved_at.toDate())
+            return solveA.isAfter(solveB) ? _solveA : _solveB
           })
           .solved_at.toDate()
       )
 
-      if (date_a.isAfter(date_b)) {
+      if (dataA.isAfter(dateB)) {
         return 1
-      } else if (date_a.isBefore(date_b)) {
+      } else if (dataA.isBefore(dateB)) {
         return -1
       } else {
         return 0
