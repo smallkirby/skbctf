@@ -57,7 +57,7 @@ export default Vue.extend({
   },
 
   computed: {
-    ...mapGetters(['notifications']),
+    ...mapGetters(['notifications', 'user', 'loggedin', 'solves']),
     notificationsToShow() {
       return this.notifications.slice(0, 5)
     },
@@ -72,29 +72,29 @@ export default Vue.extend({
       }
     },
     screenName() {
-      if (this.$store.getters.user) {
-        return this.$store.getters.user.twitter_screenName
+      if (this.user) {
+        return this.user.twitter_screenName
       } else {
         return ''
       }
     },
     isLoggedin() {
-      return this.$store.getters.loggedin
+      return this.$store.loggedin
     },
     userinfo() {
-      return this.$store.getters.user
+      return this.user
     },
     twitterurl() {
-      if (this.$store.getters.user) {
+      if (this.user) {
         return `https://twitter.com/${this.screenName}`
       } else {
         return ''
       }
     },
     score() {
-      if (this.$store.getters.solves) {
-        return this.$store.getters.solves.reduce((total, solve) => {
-          const chall = this.$store.getters.challs.find(
+      if (this.solves) {
+        return this.reduce((total, solve) => {
+          const chall = this.challs.find(
             (chall) => chall.dataid === solve.challid
           )
           if (chall) {
@@ -108,8 +108,8 @@ export default Vue.extend({
       }
     },
     photourl() {
-      if (this.$store.getters.user) {
-        return this.$store.getters.user.photourl
+      if (this.user) {
+        return this.user.photourl
       } else {
         return ''
       }
