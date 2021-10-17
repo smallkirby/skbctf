@@ -45,6 +45,7 @@
 
 <script>
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 
 export default Vue.extend({
   name: 'LayoutChallengePanel',
@@ -85,6 +86,8 @@ export default Vue.extend({
     }
   },
   computed: {
+    ...mapGetters(['solves']),
+
     styleset() {
       if (this.isSolved) {
         if (this.isMouseOn) {
@@ -119,7 +122,7 @@ export default Vue.extend({
       }
     },
     isSolved() {
-      const solves = this.$store.getters.solves
+      const solves = this.solves
       if (solves) {
         return solves.some((solve) => solve.challid === this.challid)
       } else {

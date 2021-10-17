@@ -283,6 +283,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 
 export default Vue.extend({
   name: 'LayoutHeader',
@@ -294,9 +295,7 @@ export default Vue.extend({
     }
   },
   computed: {
-    loggedin() {
-      return this.$store.getters.loggedin
-    },
+    ...mapGetters(['loggedin']),
   },
   methods: {
     async login() {
