@@ -57,7 +57,7 @@ export default Vue.extend({
   },
 
   computed: {
-    ...mapGetters(['notifications', 'user', 'loggedin', 'solves']),
+    ...mapGetters(['notifications', 'user', 'loggedin', 'solves', 'challs']),
     notificationsToShow() {
       return this.notifications.slice(0, 5)
     },
@@ -79,7 +79,7 @@ export default Vue.extend({
       }
     },
     isLoggedin() {
-      return this.$store.loggedin
+      return this.loggedin
     },
     userinfo() {
       return this.user
@@ -93,7 +93,7 @@ export default Vue.extend({
     },
     score() {
       if (this.solves) {
-        return this.reduce((total, solve) => {
+        return this.solves.reduce((total, solve) => {
           const chall = this.challs.find(
             (chall) => chall.dataid === solve.challid
           )
