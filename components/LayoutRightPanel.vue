@@ -45,6 +45,7 @@
 
 <script>
 import Vue from 'vue'
+import moment from 'moment'
 import { mapGetters } from 'vuex'
 
 export default Vue.extend({
@@ -61,15 +62,20 @@ export default Vue.extend({
     notificationsToShow() {
       return this.notifications.slice(0, 5)
     },
-    notificationsTooMany() {
-      return this.notifications.length > 5
-    },
     notificationsNotShownSize() {
-      if (this.notifications.length <= 5) {
+      const recentnotifications = this.notifications.filter((notif) => {
+        const pubdate = moment(notif.publishedAt)
+        const limitDay = moment().subtract('months', 1)
+        return pubdate.isAfter(limitDay)
+      })
+      if (recentnotifications.length <= 5) {
         return 0
       } else {
-        return this.notifications.length - 5
+        return recentnotifications.length - 5
       }
+    },
+    notificationsTooMany() {
+      return this.notificationsNotShownSize > 0
     },
     screenName() {
       if (this.user) {
