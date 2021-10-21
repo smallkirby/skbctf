@@ -31,14 +31,22 @@ export const getChartData = (_solves) => {
   let total = 0
   const data = [
     {
-      x: zeroDate.subtract(1, 'days').toISOString(),
+      x: zeroDate.subtract(1, 'days').format(),
       y: total,
     },
   ]
   for (const score of scores) {
     total += score.score
     data.push({
-      x: score.date.toISOString(),
+      x: score.date.format(),
+      y: total,
+    })
+  }
+
+  // add today if last data is not today's
+  if (!moment(data[data.length - 1].x).isSame(moment(), 'day')) {
+    data.push({
+      x: moment().format(),
       y: total,
     })
   }

@@ -45,6 +45,10 @@ export default {
               type: 'time',
               time: {
                 unit: 'day',
+                displayFormats: {
+                  day: 'YYYY/MM/DD',
+                  hour: 'MM/DD HH:mm',
+                },
               },
               ticks: {
                 fontColor: 'rgb(251, 235, 194)',
@@ -70,6 +74,7 @@ export default {
   },
   methods: {
     redrawChart(ymax) {
+      console.log(this.propsData)
       this.$data._chart.destroy()
       this.$set(this.options.scales.yAxes[0].ticks, 'suggestedMax', ymax)
       this.renderChart(this.data, this.options)
