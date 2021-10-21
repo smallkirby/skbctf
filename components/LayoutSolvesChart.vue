@@ -10,6 +10,11 @@ export default {
       require: true,
       default: () => [],
     },
+    ymax: {
+      type: Number,
+      require: true,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -50,6 +55,8 @@ export default {
             {
               ticks: {
                 fontColor: 'rgb(251, 235, 194)',
+                suggestedMin: 0,
+                suggestedMax: this.ymax,
               },
             },
           ],
@@ -60,6 +67,13 @@ export default {
   },
   mounted() {
     this.renderChart(this.data, this.options)
+  },
+  methods: {
+    redrawChart(ymax) {
+      this.$data._chart.destroy()
+      this.$set(this.options.scales.yAxes[0].ticks, 'suggestedMax', ymax)
+      this.renderChart(this.data, this.options)
+    },
   },
 }
 </script>

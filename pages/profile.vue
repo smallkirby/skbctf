@@ -42,10 +42,16 @@
           </div>
           <div class="ml-2">
             <div class="ml-2 my-8">
-              <p class="text-white text-2xl my-8">HISTORY</p>
+              <p class="text-white text-2xl mt-8 mb-2">HISTORY</p>
+              <div class="mt-1 mb-3 ml-2">
+                <input id="useMyYaxe" type="checkbox" @click="redrawChart" />
+                <label for="useMyYaxe">Use my score as Y-axe.</label>
+              </div>
               <layout-solves-chart
                 v-if="chartReady"
+                ref="chart_layout"
                 :props-data="chartData"
+                :ymax="ymax"
                 class="pl-2"
               />
             </div>
@@ -67,10 +73,25 @@ export default Vue.extend({
   data() {
     return {
       loginFinished: false,
+      useMyYaxe: false,
     }
   },
   computed: {
-    ...mapGetters(['solves', 'loggedin', 'user', 'challs', 'solvesDetail']),
+    ...mapGetters([
+      'solves',
+      'loggedin',
+      'user',
+      'challs',
+      'solvesDetail',
+      'availMaxScore',
+    ]),
+    ymax() {
+      if (this.useMyYaxe === true) {
+        return this.score
+      } else {
+        return this.availMaxScore
+      }
+    },
     chartReady() {
       return this.chartData.length !== 0
     },
@@ -123,6 +144,10 @@ export default Vue.extend({
     },
     closePopup() {
       this.loginFinished = false
+    },
+    redrawChart() {
+      this.$set(this, 'useMyYaxe', !this.useMyYaxe)
+      this.$refs.chart_layout.redrawChart(this.ymax)
     },
   },
 })
