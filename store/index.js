@@ -177,6 +177,13 @@ export const getters = {
     })
   },
 
+  availMaxScore(state) {
+    const ms = state.challs.reduce((sum, chall) => {
+      return sum + chall.score
+    }, 0)
+    return ms
+  },
+
   notifications(state) {
     return state.notifications.slice().sort((a, b) => {
       const ad = new Date(a.publishedAt)
