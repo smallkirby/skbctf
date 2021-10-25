@@ -27,10 +27,8 @@ const updateDeploy = async () => {
     const muxed = new PassThrough()
 
     proc.stdout.on('data', (chunk) => muxed.write(chunk))
-    proc.stdout.on('data', (chunk) => muxed.write(chunk))
 
     Promise.all([
-      new Promise<void>((resolve) => proc.stdout.on('end', () => resolve())),
       new Promise<void>((resolve) => proc.stdout.on('end', () => resolve())),
     ]).then(() => {
       muxed.end()
