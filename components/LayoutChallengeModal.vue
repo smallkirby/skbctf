@@ -197,7 +197,7 @@ export default Vue.extend({
         base = 'https://skbctf-tsg.smallkirby.xyz'
       }
       if (this.statusFailing) {
-        return `${base}/error`
+        return `${base}/badge/error`
       } else {
         return `${base}/badge/${this.challid}?_=${this.statusRandom}` // XXX
       }
