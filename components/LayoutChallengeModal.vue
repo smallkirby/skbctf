@@ -31,7 +31,14 @@
                 <div class="text-pink-200 font-bold">
                   {{ name }}
                 </div>
-                <div class="pr-4">{{ score }} pts</div>
+                <div class="pr-4 flex flex-row">
+                  <div class="mr-4 mt-1">
+                    <img :src="status_image_url" @error="statusReadFail" />
+                  </div>
+                  <div>
+                    <p>{{ score }} pts</p>
+                  </div>
+                </div>
               </div>
               <div class="my-0 mx-2 overflow-y-auto flex-grow flex-shrink">
                 <p
@@ -174,18 +181,41 @@ export default Vue.extend({
       pulseChar: '',
       waitingJudge: false,
       solvers: [],
+      statusFailing: false,
+      statusRandom: 0,
     }
   },
   computed: {
     description_lines() {
       return this.description.split('\n')
     },
+    status_image_url() {
+      let base = ''
+      if (this.$root.context.isDev) {
+        base = 'http://localhost:8080'
+      } else {
+        base = 'https://skbctf-tsg.smallkirby.xyz'
+      }
+      if (this.statusFailing) {
+        return `${base}/error`
+      } else {
+        return `${base}/badge/${this.challid}?_=${this.statusRandom}` // XXX
+      }
+    },
   },
   async mounted() {
     const solvers = await getSolversForChall(this.challid)
     this.solvers = solvers
+    setInterval(this.refreshStatus, 5 * 1000 * 60)
   },
   methods: {
+    refreshStatus() {
+      this.statusFailing = false
+      this.statusRandom = randomInt()
+    },
+    statusReadFail() {
+      this.statusFailing = true
+    },
     toTwitterURL(screenName) {
       return `https://twitter.com/${screenName}`
     },
