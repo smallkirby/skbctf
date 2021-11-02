@@ -182,7 +182,7 @@ export default Vue.extend({
       waitingJudge: false,
       solvers: [],
       statusFailing: 0,
-      statusRandom: 0,
+      statusRandom: '',
     }
   },
   computed: {
@@ -197,23 +197,23 @@ export default Vue.extend({
         base = 'https://skbctf-tsg.smallkirby.xyz'
       }
       if (this.statusFailing === 0) {
-        return `${base}/badge/error`
+        return `${base}/badge/${this.challid}?_=${this.statusRandom}`
       } else if (this.statusFailing === 1) {
-        return `${base}/badge/${this.challid}?_=${this.statusRandom}` // XXX
+        return `${base}/badge/error`
       } else {
         return 'https://img.shields.io/badge/error-status_server_is_down-663300'
       }
     },
   },
-  async mounted() {
+  async created() {
     const solvers = await getSolversForChall(this.challid)
     this.solvers = solvers
-    setInterval(this.refreshStatus, 5 * 1000 * 60)
+    setInterval(this.refreshStatus, 5 * 1000 * 60) // refresh every 5 minutes
   },
   methods: {
     refreshStatus() {
       this.statusFailing = 0
-      this.statusRandom = randomInt()
+      this.statusRandom = Math.random().toString()
     },
     statusReadFail() {
       if (this.statusFailing <= 1) {
