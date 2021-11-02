@@ -181,7 +181,7 @@ export default Vue.extend({
       pulseChar: '',
       waitingJudge: false,
       solvers: [],
-      statusFailing: false,
+      statusFailing: 0,
       statusRandom: 0,
     }
   },
@@ -196,10 +196,12 @@ export default Vue.extend({
       } else {
         base = 'https://skbctf-tsg.smallkirby.xyz'
       }
-      if (this.statusFailing) {
+      if (this.statusFailing === 0) {
         return `${base}/badge/error`
-      } else {
+      } else if (this.statusFailing === 1) {
         return `${base}/badge/${this.challid}?_=${this.statusRandom}` // XXX
+      } else {
+        return 'https://img.shields.io/badge/error-status_server_is_down-663300'
       }
     },
   },
@@ -210,11 +212,13 @@ export default Vue.extend({
   },
   methods: {
     refreshStatus() {
-      this.statusFailing = false
+      this.statusFailing = 0
       this.statusRandom = randomInt()
     },
     statusReadFail() {
-      this.statusFailing = true
+      if (this.statusFailing <= 1) {
+        this.statusFailing++
+      }
     },
     toTwitterURL(screenName) {
       return `https://twitter.com/${screenName}`
