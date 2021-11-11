@@ -65,7 +65,7 @@ export default Vue.extend({
     notificationsNotShownSize() {
       const recentnotifications = this.notifications.filter((notif) => {
         const pubdate = moment(notif.publishedAt)
-        const limitDay = moment().subtract('months', 1)
+        const limitDay = moment().subtract(1, 'months')
         return pubdate.isAfter(limitDay)
       })
       if (recentnotifications.length <= 5) {
