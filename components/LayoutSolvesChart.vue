@@ -10,6 +10,15 @@ import Vue from 'vue'
 import Chart from 'chart.js/auto'
 import 'chartjs-adapter-moment'
 
+const defaultColor = 'rgb(251, 235, 194)' // skwhite
+const defaultFont = {
+  color: defaultColor,
+  font: {
+    family: 'Ubuntu Mono',
+    size: 23,
+  },
+}
+
 export default Vue.extend({
   props: {
     propsData: {
@@ -36,7 +45,7 @@ export default Vue.extend({
           {
             label: 'Total Score',
             fontColor: 'red',
-            borderColor: 'rgb(251, 235, 194)',
+            borderColor: defaultColor,
             fill: true,
             data: this.propsData,
           },
@@ -65,13 +74,29 @@ export default Vue.extend({
               },
             },
             ticks: {
-              fontColor: 'rgb(251, 235, 194)',
+              color: defaultColor,
+              font: {
+                family: 'Ubuntu Mono',
+              },
               maxTicksLimit: 15,
+            },
+            title: {
+              text: 'solved at',
+              display: true,
+              ...defaultFont,
             },
           },
           y: {
             ticks: {
-              fontColor: 'rgb(251, 235, 194)',
+              color: defaultColor,
+              font: {
+                family: 'Ubuntu Mono',
+              },
+            },
+            title: {
+              text: 'pwned pts',
+              display: true,
+              ...defaultFont,
             },
             suggestedMin: 0,
             suggestedMax: this.ymax,
