@@ -132,8 +132,8 @@
 
 <script>
 import Vue from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/functions'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/functions'
 import { getSolversForChall } from '~/static/js/firebase'
 
 export default Vue.extend({
