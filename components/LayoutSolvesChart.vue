@@ -66,6 +66,7 @@ export default Vue.extend({
             },
             ticks: {
               fontColor: 'rgb(251, 235, 194)',
+              maxTicksLimit: 15,
             },
           },
           y: {
