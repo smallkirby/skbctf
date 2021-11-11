@@ -13,7 +13,7 @@
         <td>{{ solve.name }}</td>
         <td>{{ solve.genre }}</td>
         <td>{{ solve.score }}</td>
-        <td>{{ solve.solved_at }}</td>
+        <td>{{ solve.solved_at.format('YYYY/MM/DD HH:mm:SS') }}</td>
       </tr>
     </table>
   </layout-wrapper>

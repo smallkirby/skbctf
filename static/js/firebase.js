@@ -93,9 +93,7 @@ export const getUserData = async (uid) => {
         solves: data.solves.map((solve) => {
           return {
             ...solve,
-            solved_at: moment(solve.solved_at.toDate()).format(
-              'YYYY/MM/DD HH:mm:SS'
-            ),
+            solved_at: moment(solve.solved_at.toDate()),
           }
         }),
       }
