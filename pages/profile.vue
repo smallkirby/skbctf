@@ -65,11 +65,9 @@
 <script>
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import LayoutSolvesTable from '~/components/LayoutSolvesTable.vue'
 import { getChartData } from '~/static/js/solveChart'
 
 export default Vue.extend({
-  components: { LayoutSolvesTable },
   data() {
     return {
       loginFinished: false,
